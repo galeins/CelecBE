@@ -1,0 +1,18 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<tabbox  id="tboxPrincipalAsesor" width="100%" tabscroll="false" >
+        <tabs >
+            <tab label="Identificación del cargo" sclass="menutabs"/>
+            <tab label="Requisitos mínimos" sclass="menutabs"/>
+            <tab label="Atributos de publicación" sclass="menutabs"/>            
+            <tab label="Parámetros de calificación" sclass="menutabs"/> 
+	</tabs>
+        <tabpanels>
+            <tabpanel>
+                <include src="/celec/asesor/identificacionCargo.zul"/>
+            </tabpanel>
+            <tabpanel></tabpanel>
+            <tabpanel></tabpanel>
+            <tabpanel></tabpanel>            
+        </tabpanels>
+  </tabbox>

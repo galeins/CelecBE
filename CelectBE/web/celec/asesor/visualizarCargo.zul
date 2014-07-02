@@ -1,0 +1,185 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<window  width="70%" height="90%" mode="overlapped" closable="true" position="center" id="ventanaVerCargo"
+apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.asesor.VisualizarProcesoViewModel')"
+ form="@id('fx') @load(vm.beOfertaEmpleo)">
+      <caption label="Ver perfil del cargo" style="font-weight:bold"/> 
+       <tabbox id="tboxPrincipal" width="98%" height="98%" tabscroll="true" >
+        <tabs >
+            <tab label="Identificación del cargo" sclass="menutabs"/>
+            <tab label="Requisitos mínimos" sclass="menutabs"/>                             
+	</tabs>
+	<tabpanels >
+            <tabpanel height="100%" width="100%">
+                    <grid span="true" sizedByContent="true">
+                        <columns>
+                            <column width="20%"></column>
+                            <column width="30%"></column>
+                            <column width="20%"></column>
+                            <column width="30%"></column>        
+                        </columns>
+                        <rows>
+                            <row> 
+                                <cell>
+                                    <label value="Denominación del cargo:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.beCatalogoByCoCategoriaOfertaOfe.nbCatalogo)"/>
+                                </cell>
+                                <cell>
+                                    <label value="Código" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.coCodigoOfertaOfe)" width="96%" />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Área/Departamento:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>                                  
+                                    <label value="@bind(fx.beCatalogoByCoDepartamentoOfe.nbCatalogo)"/>                                    
+                                </cell>
+                                <cell>
+                                     <label value="Asignación salarial:" sclass="labelColumnGrid"/>   
+                                </cell>
+                                <cell>
+                                    <label  width="96%" value="@bind(fx.vaMensualOferemp)"/>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Localidad:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.vaLocalidadOfe)" width="96%"/>
+                                </cell>
+                                <cell>
+                                    <label value="Número de vacantes:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <label  value="@bind(fx.nuVacntesOferemp)"/>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Objetivo General del cargo:" sclass="labelColumnGrid"/>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                   <label value="@bind(fx.vaObjetivoCargoOfe)" multiline="true"  width="98%" /> 
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Tipo de relación laboral:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.beCatalogoByCoRelaLabOferemp.nbCatalogo)"/>
+                                </cell>  
+                            </row>                           
+                        </rows>
+                    </grid>
+                    <separator bar="true"/>
+                    <label value="Atributos de la publicación" style="font-family: arial,sans-serif; font-size: 13px;  font-size-adjust: true; font-weight : bold;      
+        white-space: wrap;color:blue"/>
+                    <separator bar="true"/>
+                    <grid>
+                        <rows>
+                            <row>
+                                <cell>
+                                    <label value="Estado del perfil:" sclass="labelColumnGrid" />
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.esOfertaEmpleo)" />                                     
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Vigencia de publicación:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    Desde: <label value="@bind(fx.feInivigenOferemp)" />
+                                </cell>
+                                <cell>
+                                    Hasta: <label value="@bind(fx.feFinvigenOferemp)" />                                    
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label id="m1" value="@bind(vmsgs['FechaError'])" style="color:red"/>
+                                </cell>
+                            </row>
+                        </rows>
+                    </grid>
+            </tabpanel>
+            <tabpanel>
+                 <grid  sizedByContent="true">
+                        <columns>
+                            <column width="20%"></column>
+                            <column width="30%"></column>
+                            <column width="20%"></column>
+                            <column width="30%"></column>        
+                        </columns>
+                        <rows>
+                            <row>
+                                <cell>
+                                    <label value="Nivel de educación:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.beCatalogoByCoInstruccionOferemp.nbCatalogo)"/>                                    
+                                </cell>
+                                <cell>
+                                    <label value="Área de estudios:" sclass="labelColumnGrid"/>                               
+                                </cell>
+                                <cell>
+                                    <label value="@bind(fx.beCatalogoByCoAreaEstudio.nbCatalogo)"></label>                                    
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Experiencia general (años):" sclass="labelColumnGrid"/>       
+                                </cell>
+                                <cell>
+                                    <label  value="@bind(fx.nuAniosExpCargoOferemp)"
+                                           />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Experiencia específica / Destrezas:" sclass="labelColumnGrid"/>                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="@bind(fx.vaExperienciaRequeridaOfe)"  width="98%"  />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Conocimientos Requeridos:" sclass="labelColumnGrid"/>                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="@bind(fx.vaConocimientosRequeridosOfe)" />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Competencias Requeridas:" sclass="labelColumnGrid"/>                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="@bind(fx.vaCompetenciasOfe)" />
+                                </cell>
+                            </row>
+                        </rows>
+                            
+                 </grid>
+            </tabpanel>
+        </tabpanels>
+       </tabbox>
+</window>

@@ -1,0 +1,241 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<window  width="70%" height="90%" mode="overlapped" closable="true" position="center" id="ventanaPerfilCargo"
+apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.asesor.NuevoProcesoViewModel')"
+ form="@id('fx') @load(vm.beOfertaEmpleo) @save(vm.beOfertaEmpleo, before='grabar') @validator('ec.gob.celec.controlador.asesor.PerfilCargoValidador')" 
+         validationMessages="@id('vmsgs')">
+      <caption label="Nuevo proceso de selección" style="font-weight:bold"/> 
+       <tabbox id="tboxPrincipal" width="98%" height="98%" tabscroll="true" >
+        <tabs >
+            <tab label="Identificación del cargo" sclass="menutabs"/>
+            <tab label="Requisitos mínimos" sclass="menutabs"/>                             
+	</tabs>
+	<tabpanels >
+            <tabpanel height="100%" width="100%">
+                    <grid span="true" sizedByContent="true">
+                        <columns>
+                            <column width="20%"></column>
+                            <column width="30%"></column>
+                            <column width="20%"></column>
+                            <column width="30%"></column>        
+                        </columns>
+                        <rows>
+                            <row> 
+                                <cell>
+                                    <label value="Denominación del cargo:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <combobox  width="100%" model="@load(vm.listaCargos)"  
+                                  readonly="true"    selectedItem="@bind(fx.beCatalogoByCoCategoriaOfertaOfe)" value="@bind(fx.beCatalogoByCoCategoriaOfertaOfe.nbCatalogo)"  constraint="no empty: Seleccione una categoría para el cargo.">
+                                    <template name="model">
+                                          <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                    </template>
+                                    </combobox>
+                                </cell>
+                                <cell>
+                                    <label value="Código" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <textbox value="@bind(fx.coCodigoOfertaOfe)" width="96%" readonly="true" />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Área/Departamento:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>                                  
+                                    <combobox  width="100%" model="@load(vm.listaDepartamentos)"  
+                                  readonly="true"   selectedItem="@bind(fx.beCatalogoByCoDepartamentoOfe)" value="@bind(fx.beCatalogoByCoDepartamentoOfe.nbCatalogo)"  constraint="no empty: Seleccione una categoría para el cargo.">
+                                    <template name="model">
+                                          <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                    </template>
+                                </combobox>
+                                </cell>
+                                <cell>
+                                     <label value="Asignación salarial:" sclass="labelColumnGrid"/>   
+                                </cell>
+                                <cell>
+                                    <doublebox format="#,###.00"  width="96%" value="@bind(fx.vaMensualOferemp)"/>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Localidad:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <textbox value="@bind(fx.vaLocalidadOfe)" width="96%" constraint="no empty: Ingrese una localidad."/>
+                                </cell>
+                                <cell>
+                                    <label value="Número de vacantes:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    <spinner id="spinnerVacante" value="@bind(fx.nuVacntesOferemp)"
+                                                format="###" constraint="no empty,min 0,max 100" />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Objetivo General del cargo:" sclass="labelColumnGrid"/>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                   <textbox value="@bind(fx.vaObjetivoCargoOfe)" multiline="true" rows="6" width="98%" constraint="no empty: Ingrese el objetivo del cargo."/> 
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Tipo de relación laboral:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <combobox  width="100%" model="@load(vm.listaTipoRelacion)"  
+                                  readonly="true"  selectedItem="@bind(fx.beCatalogoByCoRelaLabOferemp)" value="@bind(fx.beCatalogoByCoRelaLabOferemp.nbCatalogo)"  constraint="no empty: Seleccione un tipo de relación laboral.">
+                                    <template name="model">
+                                          <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                    </template>
+                                    </combobox>
+                                </cell>  
+                            </row>                           
+                        </rows>
+                    </grid>
+                    <separator bar="true"/>
+                    <label value="Atributos de la publicación" style="font-family: arial,sans-serif; font-size: 13px;  font-size-adjust: true; font-weight : bold;      
+        white-space: wrap;color:blue"/>
+                    <separator bar="true"/>
+                    <grid>
+                        <rows>
+                            <row>
+                                <cell>
+                                    <label value="Estado del perfil:" sclass="labelColumnGrid" />
+                                </cell>
+                                <cell>
+                                     <combobox  width="100%" readonly="true" constraint="no empty: Seleccione un estado para el perfil."
+                                     value="@bind(fx.esOfertaEmpleo)">
+                                        <comboitem  value= "Ingresado" label="Ingresado" />
+                                        <comboitem  value= "Publicado" label="Publicado" />
+                                        <comboitem  value= "En evaluación" label="En evaluación" />
+                                        <comboitem  value= "En pruebas" label="En pruebas" />
+                                        <comboitem  value= "En entrevistas" label="En entrevistas" />
+                                        <comboitem  value= "Cerrado" label="Cerrado" />                                        
+                                     </combobox>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Vigencia de publicación:" sclass="labelColumnGrid"/>
+                                </cell>
+                                <cell>
+                                    Desde: <datebox id="dbDesde" value="@bind(fx.feInivigenOferemp)" constraint="no empty: Verifique las fechas de inicio y final."/>
+                                </cell>
+                                <cell>
+                                    Hasta: <datebox id="dbHasta" value="@bind(fx.feFinvigenOferemp)" constraint="no empty: Verifique las fechas de inicio y final."/>                                    
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label id="m1" value="@bind(vmsgs['FechaError'])" style="color:red"/>
+                                </cell>
+                            </row>
+                        </rows>
+                    </grid>
+                     <separator bar="true"/>
+                      <grid>
+                        <rows>
+                            <row>
+                                <cell align="center">
+                                    <hbox>                                                  
+                                    <button label="Grabar perfil" onClick="@command('grabar')"></button>
+                                    </hbox>
+                                </cell>              
+                            </row>
+                        </rows>
+                    </grid>       
+            </tabpanel>
+            <tabpanel>
+                 <grid  sizedByContent="true">
+                        <columns>
+                            <column width="20%"></column>
+                            <column width="30%"></column>
+                            <column width="20%"></column>
+                            <column width="30%"></column>        
+                        </columns>
+                        <rows>
+                            <row>
+                                <cell>
+                                    <label value="Nivel de educación:" sclass="labelColumnGrid"/>                                
+                                </cell>
+                                <cell>
+                                    <combobox  width="100%" model="@load(vm.listaNivelEducacion)"  
+                                  readonly="true"  selectedItem="@bind(fx.beCatalogoByCoInstruccionOferemp)" value="@bind(fx.beCatalogoByCoInstruccionOferemp.nbCatalogo)"   constraint="no empty: Seleccione nivel de educación.">
+                                    <template name="model">
+                                          <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                    </template>
+                                    </combobox>
+                                </cell>
+                                <cell>
+                                    <label value="Área de estudios:" sclass="labelColumnGrid"/>                               
+                                </cell>
+                                <cell>
+                                    <combobox  width="100%" model="@load(vm.listaAreaEstudios)"  
+                                  readonly="true"  selectedItem="@bind(fx.beCatalogoByCoAreaEstudio)" value="@bind(fx.beCatalogoByCoAreaEstudio.nbCatalogo)"  constraint="no empty: Seleccione área de estudio.">
+                                    <template name="model">
+                                          <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                    </template>
+                                    </combobox>
+                                </cell>
+                            </row>
+                            <row>
+                                <cell>
+                                    <label value="Experiencia general (años):" sclass="labelColumnGrid"/>       
+                                </cell>
+                                <cell>
+                                    <spinner  value="@bind(fx.nuAniosExpCargoOferemp)"
+                                                format="###" constraint="no empty,min 0,max 100" />
+                                </cell>
+                                <cell>
+                                    <label value="Capacitación (horas):" sclass="labelColumnGrid"/>       
+                                </cell>
+                                <cell>
+                                    <spinner  value="@bind(fx.nuCapacitacion)"
+                                                format="###" constraint="no empty,min 0,max 100" />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Experiencia específica / Destrezas:" sclass="labelColumnGrid"/>                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <textbox value="@bind(fx.vaExperienciaRequeridaOfe)" rows="6" width="98%" constraint="no empty: Ingrese la experiencia específica del cargo." />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Conocimientos Requeridos:" sclass="labelColumnGrid"/>                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <textbox value="@bind(fx.vaConocimientosRequeridosOfe)" rows="6" width="98%" constraint="no empty: Ingrese conocimientos requeridos." />
+                                </cell>
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <label value="Competencias Requeridas:" sclass="labelColumnGrid"/>                                    
+                                    
+                                </cell>                                
+                            </row>
+                            <row>
+                                <cell colspan="4">
+                                    <textbox value="@bind(fx.vaCompetenciasOfe)" rows="6" width="98%" constraint="no empty: Ingrese competencias requeridas." />
+                                </cell>
+                            </row>
+                        </rows>
+                            
+                 </grid>
+            </tabpanel>
+        </tabpanels>
+       </tabbox>
+</window>

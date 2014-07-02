@@ -1,0 +1,5 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/celec/asesor/templateCelecAsesor.zul"?>
+<grid self="@define(contentAsesor)">
+</grid>

@@ -1,0 +1,16 @@
+<zk>
+    <borderlayout hflex="1" vflex="1">
+        <north height="50px" border="none"  >
+            <include src="/celec/general/banner.zul"/>
+        </north>
+       <west  width="23%" border="none" collapsible="true" splittable="true" minsize="300">
+            <include src="/celec/candidato/sidebar.zul"/>
+        </west>
+        <center id="mainContentAsesor" autoscroll="true" border="none" self="@insert(content)">
+           
+        </center>
+        <south height="50px" border="none">
+            <include src="/celec/general/footer.zul"/>
+        </south>
+    </borderlayout>
+</zk>

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/06/2014 11:55:07 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BePersona" table="be_persona" catalog="cqbolsaempleo">
+        <id name="coPersona" type="java.lang.Integer">
+            <column name="CO_PERSONA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogoByCoAreaEstudios" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_AREA_ESTUDIOS" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoEstadoCivilPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_ESTADO_CIVIL_PER" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoTipoIdentificacionPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_TIPO_IDENTIFICACION_PER" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoGeneroPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_GENERO_PER" />
+        </many-to-one>
+        <many-to-one name="adUsuario" class="ec.gob.celec.persistencia.AdUsuario" fetch="select">
+            <column name="CO_USUARIO" not-null="true">
+                <comment>Representa el valor nico de la tabla</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoPaisResidePer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_PAIS_RESIDE_PER" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoTipoLicenciaPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_TIPO_LICENCIA_PER">
+                <comment>TIPO DE LICENCIA DE CONDUCIR</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoTipoDiscapacidad" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_TIPO_DISCAPACIDAD">
+                <comment>TIPO DE DISCAPACIDAD</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoProvinciaPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_PROVINCIA_PER" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoGrupoEtnicoPer" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_GRUPO_ETNICO_PER">
+                <comment>GRUPO ETNICO AL QUE PERTENECE EL CANDIDATO</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoNivelEstudios" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_NIVEL_ESTUDIOS" />
+        </many-to-one>
+        <property name="nbPersona" type="string">
+            <column name="NB_PERSONA" length="50" not-null="true" />
+        </property>
+        <property name="apPersona" type="string">
+            <column name="AP_PERSONA" length="50" not-null="true" />
+        </property>
+        <property name="nuIdentificaciobPer" type="string">
+            <column name="NU_IDENTIFICACIOB_PER" length="20" not-null="true" />
+        </property>
+        <property name="deDomicilioPer" type="string">
+            <column name="DE_DOMICILIO_PER" length="100" />
+        </property>
+        <property name="coCantonPer" type="java.lang.Integer">
+            <column name="CO_CANTON_PER" />
+        </property>
+        <property name="coSectorPer" type="java.lang.Integer">
+            <column name="CO_SECTOR_PER" />
+        </property>
+        <property name="deBarrioPer" type="string">
+            <column name="DE_BARRIO_PER" length="35" />
+        </property>
+        <property name="nuTelefonoPer" type="string">
+            <column name="NU_TELEFONO_PER" length="60" not-null="true" />
+        </property>
+        <property name="nuCelularFono" type="string">
+            <column name="NU_CELULAR_FONO" length="60" />
+        </property>
+        <property name="feNacimientoPer" type="date">
+            <column name="FE_NACIMIENTO_PER" length="10" />
+        </property>
+        <property name="deLugarNacimientoPer" type="string">
+            <column name="DE_LUGAR_NACIMIENTO_PER" length="35" />
+        </property>
+        <property name="deNacionalidadPer" type="string">
+            <column name="DE_NACIONALIDAD_PER" length="30" />
+        </property>
+        <property name="deEmailPer" type="string">
+            <column name="DE_EMAIL_PER" length="50" />
+        </property>
+        <property name="coNivelAcademicoPer" type="java.lang.Integer">
+            <column name="CO_NIVEL_ACADEMICO_PER" />
+        </property>
+        <property name="nuAnioAprobadosPer" type="java.lang.Integer">
+            <column name="NU_ANIO_APROBADOS_PER" />
+        </property>
+        <property name="deTituProfesionPer" type="string">
+            <column name="DE_TITU_PROFESION_PER" length="50" />
+        </property>
+        <property name="coSituLaboralPer" type="string">
+            <column name="CO_SITU_LABORAL_PER" length="10" />
+        </property>
+        <property name="coExpLaboralPer" type="string">
+            <column name="CO_EXP_LABORAL_PER" length="10" />
+        </property>
+        <property name="imFotoPer" type="binary">
+            <column name="IM_FOTO_PER" />
+        </property>
+        <property name="dePotoPer" type="string">
+            <column name="DE_POTO_PER" length="80" />
+        </property>
+        <property name="esPersona" type="string">
+            <column name="ES_PERSONA" length="15" not-null="true" />
+        </property>
+        <property name="coInstruccion" type="java.lang.Integer">
+            <column name="CO_INSTRUCCION" />
+        </property>
+        <property name="feModifica" type="date">
+            <column name="FE_MODIFICA" length="10" />
+        </property>
+        <property name="vaDiscapacidadPer" type="string">
+            <column name="VA_DISCAPACIDAD_PER" length="5" />
+        </property>
+        <property name="vaExtranjeroPer" type="string">
+            <column name="VA_EXTRANJERO_PER" length="5" />
+        </property>
+        <property name="coPaisOrigenPer" type="java.lang.Integer">
+            <column name="CO_PAIS_ORIGEN_PER" />
+        </property>
+        <property name="nbCiudadResidePer" type="string">
+            <column name="NB_CIUDAD_RESIDE_PER" length="50" />
+        </property>
+        <property name="feResidePer" type="date">
+            <column name="FE_RESIDE_PER" length="10" />
+        </property>
+        <property name="coCondicionMigratoriaPer" type="java.lang.Integer">
+            <column name="CO_CONDICION_MIGRATORIA_PER" />
+        </property>
+        <property name="nuCargaFamiliarPer" type="java.lang.Integer">
+            <column name="NU_CARGA_FAMILIAR_PER">
+                <comment>NUMERO DE CARGAS FAMILIARES</comment>
+            </column>
+        </property>
+        <property name="vaPoseeLincenciaPer" type="string">
+            <column name="VA_POSEE_LINCENCIA_PER" length="5">
+                <comment>POSEE LICENCIA DE CONDUCIR</comment>
+            </column>
+        </property>
+        <property name="nuPorcentajeDiscapacidadPer" type="string">
+            <column name="NU_PORCENTAJE_DISCAPACIDAD_PER" length="100">
+                <comment>NUMERO DE CARNET DE DISCAPACIDAD</comment>
+            </column>
+        </property>
+        <property name="vaDisponibilidadParaViajarPer" type="string">
+            <column name="VA_DISPONIBILIDAD_PARA_VIAJAR_PER" length="5">
+                <comment>GRUPO ETNICO AL QUE PERTENECE EL CANDIDATO</comment>
+            </column>
+        </property>
+        <property name="deCantonPer" type="string">
+            <column name="DE_CANTON_PER" length="500">
+                <comment>DESCRIPCI&#211;N DEL CANTO DE RESIDENCIA</comment>
+            </column>
+        </property>
+        <property name="nuCarnetConadisPer" type="string">
+            <column name="NU_CARNET_CONADIS_PER" length="500">
+                <comment>DESCRIPCI&#211;N DEL CANTO DE RESIDENCIA</comment>
+            </column>
+        </property>
+        <set name="beCurriculos" inverse="true" lazy="false">
+            <key>
+                <column name="CO_PERSONA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCurriculo" />
+        </set>
+        <set name="beEmpresas" inverse="true">
+            <key>
+                <column name="CO_PERSONA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeEmpresa" />
+        </set>
+    </class>
+</hibernate-mapping>

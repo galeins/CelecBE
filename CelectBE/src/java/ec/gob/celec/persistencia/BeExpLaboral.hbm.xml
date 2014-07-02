@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeExpLaboral" table="be_exp_laboral" catalog="cqbolsaempleo">
+        <id name="coExpLaboral" type="java.lang.Integer">
+            <column name="CO_EXP_LABORAL" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCurriculo" class="ec.gob.celec.persistencia.BeCurriculo" fetch="select" lazy="false">
+            <column name="CO_CURRICULO" not-null="true" />
+        </many-to-one>
+        <property name="nbExpLaboral" type="string">
+            <column name="NB_EXP_LABORAL" length="1000" />
+        </property>
+        <property name="nbCargoExpLaboral" type="string">
+            <column name="NB_CARGO_EXP_LABORAL" length="40" />
+        </property>
+        <property name="feIngresoExpLaboral" type="date">
+            <column name="FE_INGRESO_EXP_LABORAL" length="10" />
+        </property>
+        <property name="feSalidaExpLaboral" type="date">
+            <column name="FE_SALIDA_EXP_LABORAL" length="10" />
+        </property>
+        <property name="nuTelefonoExpLaboral" type="string">
+            <column name="NU_TELEFONO_EXP_LABORAL" length="12" />
+        </property>
+        <property name="nbContactoExpLaboral" type="string">
+            <column name="NB_CONTACTO_EXP_LABORAL" length="30" />
+        </property>
+        <property name="coIndustria" type="java.lang.Integer">
+            <column name="CO_INDUSTRIA" />
+        </property>
+        <property name="coTipoEmpresas" type="java.lang.Integer">
+            <column name="CO_TIPO_EMPRESAS" />
+        </property>
+        <property name="nbEmpresa" type="string">
+            <column name="NB_EMPRESA" length="400" />
+        </property>
+        <property name="nbCiudad" type="string">
+            <column name="NB_CIUDAD" length="150" />
+        </property>
+        <property name="nuTiempoMeses" type="java.lang.Integer">
+            <column name="NU_TIEMPO_MESES" />
+        </property>
+        <property name="esEstado" type="string">
+            <column name="ES_ESTADO" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

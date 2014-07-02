@@ -1,0 +1,30 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<grid width="100%">
+    <zscript>
+import java.io.File;
+import org.zkoss.zul.Fileupload;
+import org.zkoss.zk.ui.event.Event;
+
+public void addVinculo() throws InterruptedException{
+org.zkoss.util.media.Media media = Fileupload.get();
+
+File myFile = new File(media.getName());
+tex.setValue(myFile.getAbsolutePath());
+alert("The full path is: "+myFile.getAbsolutePath());
+
+}
+</zscript> 
+    <columns>
+        <column></column>  <column></column>
+    </columns>
+    <rows >
+        <row>
+            <button label="Subir fotografía:" onClick="addVinculo()">
+            
+     </button>
+          
+      <textbox id="tex"/>
+        </row>
+    </rows>
+
+</grid>

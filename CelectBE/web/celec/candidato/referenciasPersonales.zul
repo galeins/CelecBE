@@ -1,0 +1,55 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.ReferenciasViewModel')"> 
+    <listbox width="80%" model="@load(vm.listaReferencias)"
+    nonselectableTags="*" checkmark="true" onSelect="@command('seleccionarBorrado')">
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+        <auxhead>
+            <auxheader colspan="4">Referencias personales</auxheader>
+        </auxhead>    
+        <listhead>
+            <listheader image="/imagenes/book_delete.png" width="35px"></listheader>
+            <listheader label="Tipo referencia" width="20%" align="center"></listheader>
+            <listheader label="Nombre" width="20%" align="center"></listheader>
+            <listheader label="Empresa/cargo" width="20%" align="center"></listheader>
+           <!-- <column label="Dirección" width="20%" align="center"></column>                            -->
+            <listheader label="Teléfonos" width="20%" align="center"></listheader>                            
+        </listhead>
+        <template name="model">                    
+            <listitem width="100%" >   
+                <listcell></listcell>                                                      
+                <listcell>
+                    <combobox width="100%" model="@load(vm.listaTipoReferencias)"
+                    selectedItem="@bind(each.vaTipoRelacion)" value="@bind(each.vaTipoRelacion)">
+                         <template name="model">
+                           <comboitem value= "@bind(each.nbCatalogo)" label="@bind(each.nbCatalogo)" />
+                        </template>                                      
+                    </combobox>             
+                </listcell>  
+                <listcell>
+                       <textbox value="@bind(each.nbRefePersonal)" width="90%"/>                                                
+                </listcell>    
+                <listcell>
+                       <textbox value="@bind(each.nbCargoRefePersonal)" width="90%"/>                
+                </listcell>    
+                <listcell>
+                     <textbox value="@bind(each.nuTelefonoRefePersonal)" width="90%"/>            
+                </listcell>                                                
+            </listitem>
+        </template>
+    </listbox>
+  <grid>
+    <rows>
+        <row>
+            <cell align="center">
+                <hbox>
+                    <button label="Nuevo" onClick="@command('insertarRegistro')"></button> 
+                  <separator bar="true"/>             
+                <button label="Grabar formación" onClick="@command('grabar')"></button>
+                </hbox>
+                
+            </cell>              
+        </row>
+    </rows>
+</grid>      
+</div>

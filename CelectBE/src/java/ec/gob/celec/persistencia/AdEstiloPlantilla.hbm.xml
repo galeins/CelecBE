@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdEstiloPlantilla" table="ad_estilo_plantilla" catalog="cqbolsaempleo">
+        <id name="coEstiloPlantilla" type="java.lang.Integer">
+            <column name="CO_ESTILO_PLANTILLA" />
+            <generator class="identity" />
+        </id>
+        <property name="nbEstilo" type="string">
+            <column name="NB_ESTILO" length="45" />
+        </property>
+        <property name="esVigente" type="string">
+            <column name="ES_VIGENTE" length="4" />
+        </property>
+        <property name="nbPathImagen" type="string">
+            <column name="NB_PATH_IMAGEN" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

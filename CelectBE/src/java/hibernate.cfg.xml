@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.datasource">java:comp/env/MySQLDS</property>
+    <!--<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cqbolsaempleo?zeroDateTimeBehavior=convertToNull</property>-->
+    <!--<property name="hibernate.connection.username">root</property>-->
+    <!--<property name="hibernate.connection.password">galito123</property>-->
+    <mapping resource="ec/gob/celec/persistencia/AdGrupoUsuario.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdUsuario.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BePersona.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeRefeEmpresa.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeExpLaboral.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeModoEmpleoOferta.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeComentarioOferta.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdMenuSistema.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeEvaluacionCv.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeAgencia.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeComentarioCv.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BePesoOferta.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCategOferta.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeOfertaEmpleo.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeModoEmpleoCv.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdAuditoria.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeEmpresa.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCategPeso.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdCabeceraEmpresa.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeIdioma.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeSegColocacion.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdSistema.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeFormAcademica.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdEstiloPlantilla.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeSelecionCvOfer.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCatalogo.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/AdPermisoMenu.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeRefePersonal.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCategoriaCv.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeColocacion.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCurriculo.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeCapacitacion.hbm.xml"/>
+    <mapping resource="ec/gob/celec/persistencia/BeConocimiento.hbm.xml"/>   
+    <mapping resource="ec/gob/celec/persistencia/BeCalificacionEducacion.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

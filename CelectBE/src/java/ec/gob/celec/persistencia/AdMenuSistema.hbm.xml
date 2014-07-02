@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdMenuSistema" table="ad_menu_sistema" catalog="cqbolsaempleo">
+        <id name="coMenuSistema" type="java.lang.Short">
+            <column name="CO_MENU_SISTEMA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="adMenuSistema" class="ec.gob.celec.persistencia.AdMenuSistema" fetch="select">
+            <column name="AD__CO_MENU_SISTEMA" />
+        </many-to-one>
+        <many-to-one name="adSistema" class="ec.gob.celec.persistencia.AdSistema" fetch="select">
+            <column name="CO_SISTEMA" not-null="true" />
+        </many-to-one>
+        <property name="nbMenuSistema" type="string">
+            <column name="NB_MENU_SISTEMA" length="30" not-null="true" />
+        </property>
+        <property name="coNivelMenuSistema" type="java.lang.Integer">
+            <column name="CO_NIVEL_MENU_SISTEMA" />
+        </property>
+        <property name="coOpcionMenuSistema" type="string">
+            <column name="CO_OPCION_MENU_SISTEMA" length="10" />
+        </property>
+        <set name="adPermisoMenus" inverse="true">
+            <key>
+                <column name="CO_MENU_SISTEMA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdPermisoMenu" />
+        </set>
+        <set name="adMenuSistemas" inverse="true">
+            <key>
+                <column name="AD__CO_MENU_SISTEMA" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdMenuSistema" />
+        </set>
+    </class>
+</hibernate-mapping>

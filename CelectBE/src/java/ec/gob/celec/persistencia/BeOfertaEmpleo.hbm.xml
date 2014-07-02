@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 02:49:31 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeOfertaEmpleo" table="be_oferta_empleo" catalog="cqbolsaempleo">
+        <id name="coOfertaEmpleo" type="java.lang.Integer">
+            <column name="CO_OFERTA_EMPLEO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogoByCoAreaEstudio" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_AREA_ESTUDIO" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoDepartamentoOfe" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_DEPARTAMENTO_OFE">
+                <comment>DEPARTAMENTO QUE REQUIERE EL PUESTO</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoRelaLabOferemp" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_RELA_LAB_OFEREMP" not-null="true" />
+        </many-to-one>
+        <many-to-one name="adUsuario" class="ec.gob.celec.persistencia.AdUsuario" fetch="select">
+            <column name="CO_USUARIO" />
+        </many-to-one>
+        <many-to-one name="beEmpresa" class="ec.gob.celec.persistencia.BeEmpresa" fetch="select">
+            <column name="CO_EMPRESA" not-null="false" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoCategoriaOfertaOfe" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_CATEGORIA_OFERTA_OFE">
+                <comment>CODIGO DE CATEGORIA DE OFERTA</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoInstruccionOferemp" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_INSTRUCCION_OFEREMP" />
+        </many-to-one>
+        <property name="nbOfertaEmpleo" type="string">
+            <column name="NB_OFERTA_EMPLEO" length="50" not-null="true" />
+        </property>
+        <property name="deDescripcionOferemp" type="string">
+            <column name="DE_DESCRIPCION_OFEREMP" length="250" not-null="false" />
+        </property>
+        <property name="coProvinciaOfermp" type="int">
+            <column name="CO_PROVINCIA_OFERMP" not-null="false" />
+        </property>
+        <property name="coCantonOferemp" type="int">
+            <column name="CO_CANTON_OFEREMP" not-null="false" />
+        </property>
+        <property name="coSectorOferemp" type="int">
+            <column name="CO_SECTOR_OFEREMP" not-null="false" />
+        </property>
+        <property name="deBarrioOferemp" type="string">
+            <column name="DE_BARRIO_OFEREMP" length="30" />
+        </property>
+        <property name="coSalarioOferemp" type="int">
+            <column name="CO_SALARIO_OFEREMP" not-null="false" />
+        </property>
+        <property name="coUrgenOferemp" type="java.lang.Integer">
+            <column name="CO_URGEN_OFEREMP" />
+        </property>
+        <property name="feInivigenOferemp" type="date">
+            <column name="FE_INIVIGEN_OFEREMP" length="10" not-null="true" />
+        </property>
+        <property name="feFinvigenOferemp" type="date">
+            <column name="FE_FINVIGEN_OFEREMP" length="10" not-null="true" />
+        </property>
+        <property name="coExpCargoOferemp" type="java.lang.Integer">
+            <column name="CO_EXP_CARGO_OFEREMP" />
+        </property>
+        <property name="nuAniosExpCargoOferemp" type="java.lang.Integer">
+            <column name="NU_ANIOS_EXP_CARGO_OFEREMP" length="10" />
+        </property>
+        <property name="nuVacntesOferemp" type="java.lang.Integer">
+            <column name="NU_VACNTES_OFEREMP" />
+        </property>
+        <property name="nbSupervisaaOferemp" type="string">
+            <column name="NB_SUPERVISAA_OFEREMP" length="30" />
+        </property>
+        <property name="nbSupervisadoxOferemp" type="string">
+            <column name="NB_SUPERVISADOX_OFEREMP" length="30" />
+        </property>
+        <property name="coJornadaOferemp" type="java.lang.Integer">
+            <column name="CO_JORNADA_OFEREMP" />
+        </property>
+        <property name="deJornadaOferemp" type="string">
+            <column name="DE_JORNADA_OFEREMP" length="50" />
+        </property>
+        <property name="vaMensualOferemp" type="big_decimal">
+            <column name="VA_MENSUAL_OFEREMP" precision="12" />
+        </property>
+        <property name="deConoCargoOferemp" type="string">
+            <column name="DE_CONO_CARGO_OFEREMP" length="500" />
+        </property>
+        <property name="deActiviCargoOferemp" type="string">
+            <column name="DE_ACTIVI_CARGO_OFEREMP" length="500" />
+        </property>
+        <property name="deCategoriaOferemp" type="string">
+            <column name="DE_CATEGORIA_OFEREMP" length="250" />
+        </property>
+        <property name="coTipoServicioOferemp" type="int">
+            <column name="CO_TIPO_SERVICIO_OFEREMP" not-null="true" />
+        </property>
+        <property name="nbContactoOferemp" type="string">
+            <column name="NB_CONTACTO_OFEREMP" length="45" />
+        </property>
+        <property name="nuFonoContactoOferemp" type="string">
+            <column name="NU_FONO_CONTACTO_OFEREMP" length="15" />
+        </property>
+        <property name="nuCelularContactoOferemp" type="string">
+            <column name="NU_CELULAR_CONTACTO_OFEREMP" length="15" />
+        </property>
+        <property name="nuFaxContactoOferemp" type="string">
+            <column name="NU_FAX_CONTACTO_OFEREMP" length="15" />
+        </property>
+        <property name="deMailContactoOferemp" type="string">
+            <column name="DE_MAIL_CONTACTO_OFEREMP" length="50" />
+        </property>
+        <property name="coDiscapacidadOferemp" type="string">
+            <column name="CO_DISCAPACIDAD_OFEREMP" length="5" />
+        </property>
+        <property name="nuPorceDiscapacidaOferemp" type="big_decimal">
+            <column name="NU_PORCE_DISCAPACIDA_OFEREMP" precision="5" />
+        </property>
+        <property name="coTipoDiscapacidadOferemp" type="java.lang.Integer">
+            <column name="CO_TIPO_DISCAPACIDAD_OFEREMP" />
+        </property>
+        <property name="deDiscapacidadOferemp" type="string">
+            <column name="DE_DISCAPACIDAD_OFEREMP" length="45" />
+        </property>
+        <property name="esOfertaEmpleo" type="string">
+            <column name="ES_OFERTA_EMPLEO" length="45" />
+        </property>
+        <property name="deProcesoSelec" type="string">
+            <column name="DE_PROCESO_SELEC" length="5" />
+        </property>
+        <property name="esSeleccion" type="string">
+            <column name="ES_SELECCION" length="45" />
+        </property>
+        <property name="feCreacion" type="date">
+            <column name="FE_CREACION" length="10" />
+        </property>
+        <property name="deSoloConquito" type="string">
+            <column name="DE_SOLO_CONQUITO" length="300" />
+        </property>
+        <property name="coCodigoOfertaOfe" type="string">
+            <column name="CO_CODIGO_OFERTA_OFE" length="100">
+                <comment>CODIGO DE LA OFERTA. LA NUMERACI&#211;N DEBE SER A&#209;O-SIGLACATEGORIA-SECUENCIAL</comment>
+            </column>
+        </property>
+        <property name="vaPublicadoOfe" type="string">
+            <column name="VA_PUBLICADO_OFE" length="5">
+                <comment>INDICADOR SI ESTA PUBLICADO</comment>
+            </column>
+        </property>
+        <property name="vaAsignacionSalarialOfe" type="big_decimal">
+            <column name="VA_ASIGNACION_SALARIAL_OFE" precision="10">
+                <comment>ASIGNACION SALARIAL PARA EL PUESTO</comment>
+            </column>
+        </property>
+        <property name="vaCodigoOfertaOfe" type="java.lang.Integer">
+            <column name="VA_CODIGO_OFERTA_OFE">
+                <comment>CODIGO DE LA OFERTA EN FORMATO (A&#209;O-SIGLA_CATEGORIA_SECUENCIAL</comment>
+            </column>
+        </property>
+        <property name="vaLocalidadOfe" type="string">
+            <column name="VA_LOCALIDAD_OFE">
+                <comment>LOCALIDAD DONDE SE EJERCERAN LAS FUNCIONES</comment>
+            </column>
+        </property>
+        <property name="vaObjetivoCargoOfe" type="string">
+            <column name="VA_OBJETIVO_CARGO_OFE" length="65535">
+                <comment>OBJETIVO DEL CARGO</comment>
+            </column>
+        </property>
+        <property name="vaPorcentajeDiscapacidadOfe" type="java.lang.Integer">
+            <column name="VA_PORCENTAJE_DISCAPACIDAD_OFE">
+                <comment>PORCENTAJE DE DISCAPACIDAD</comment>
+            </column>
+        </property>
+        <property name="vaExperienciaRequeridaOfe" type="string">
+            <column name="VA_EXPERIENCIA_REQUERIDA_OFE" length="65535">
+                <comment>EXPERIENCIA ESPEC&#205;FICA REQUERIDA</comment>
+            </column>
+        </property>
+        <property name="vaConocimientosRequeridosOfe" type="string">
+            <column name="VA_CONOCIMIENTOS_REQUERIDOS_OFE" length="65535">
+                <comment>CONOCIMIENTOS REQUERIDOS</comment>
+            </column>
+        </property>
+        <property name="vaCompetenciasOfe" type="string">
+            <column name="VA_COMPETENCIAS_OFE" length="65535">
+                <comment>COMPETENCIAS REQUERIDAS</comment>
+            </column>
+        </property>
+        <property name="nuCapacitacion" type="int">
+            <column name="NU_CAPACITACION" />
+        </property>
+        <set name="beComentarioOfertas" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeComentarioOferta" />
+        </set>
+        <set name="beSelecionCvOfers" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeSelecionCvOfer" />
+        </set>
+        <set name="bePesoOfertas" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePesoOferta" />
+        </set>
+        <set name="beModoEmpleoOfertas" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeModoEmpleoOferta" />
+        </set>
+        <set name="beColocacions" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeColocacion" />
+        </set>
+        <set name="beCategOfertas" inverse="true">
+            <key>
+                <column name="CO_OFERTA_EMPLEO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCategOferta" />
+        </set>
+    </class>
+</hibernate-mapping>

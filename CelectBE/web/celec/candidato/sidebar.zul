@@ -1,0 +1,26 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<grid hflex="1" vflex="1"  id="gridMenu" apply="ec.gob.celec.controlador.candidato.FrameCandidatoController">
+    <columns>
+        <column width="300px"/>
+    </columns>
+  <rows >
+        <row sclass="sidebar-fn">      
+            <hlayout spacing="10px" style="border:1px;padding-top:20px;padding-left:5px" width="90%">
+                <image src="/imagenes/Logo_Celec.png" height="15%" width="100%"/>
+            </hlayout>
+        </row>
+        <row>
+           <button id="btnHojaDeVida" image="/imagenes/BotonMiHojaDeVida.png" style="border:0px;width=100%" >
+           </button> 
+        </row>
+        <row>
+            <button id="btnOfertaEmpleo" image="/imagenes/BotonOfertasEmpleo.png" style="border:0px;width=100%">
+           </button>
+        </row>
+        <row>
+           <button visible="true" id="btnBuzonEmpleo" image="/imagenes/BotonBuzonEmpleo.png" style="border:0px;width=100%">
+           </button>
+        </row>
+  </rows>
+</grid>
+

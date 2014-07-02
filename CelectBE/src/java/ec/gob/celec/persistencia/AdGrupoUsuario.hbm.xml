@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdGrupoUsuario" table="ad_grupo_usuario" catalog="cqbolsaempleo">
+        <id name="coGrupoUsuario" type="java.lang.Short">
+            <column name="CO_GRUPO_USUARIO" />
+            <generator class="identity" />
+        </id>
+        <property name="nbGrupoUsuario" type="string">
+            <column name="NB_GRUPO_USUARIO" length="20" not-null="true" />
+        </property>
+        <property name="nbPortal" type="string">
+            <column name="NB_PORTAL" length="20" not-null="true" />
+        </property>
+        <set name="adPermisoMenus" inverse="true">
+            <key>
+                <column name="CO_GRUPO_USUARIO" not-null="true">
+                    <comment>Representa el valor nico de la tabla</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdPermisoMenu" />
+        </set>
+        <set name="adUsuarios" inverse="true">
+            <key>
+                <column name="CO_GRUPO_USUARIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdUsuario" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<div hflex="1" vflex="1" sclass="banner">
+    <hbox hflex="1" vflex="1" align="center">
+        <div width="100%">
+            <label value="Selección de Talento Humano" sclass="banner-head" />
+        </div>
+         <hbox apply="ec.gob.celec.controlador.general.LogoutController"
+            hflex="1" vflex="1" pack="end" align="end" >
+            Usuario:
+            <label value="${sessionScope.userCredential.name}" if="${not sessionScope.userCredential.anonymous}"/>
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <separator bar="true"/>
+            <label id="logout" value="Salir" if="${not sessionScope.userCredential.anonymous}" sclass="logout"/>
+        </hbox>       
+    </hbox>
+</div>

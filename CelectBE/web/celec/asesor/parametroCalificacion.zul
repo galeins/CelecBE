@@ -1,0 +1,139 @@
+<window  mode="overlapped" closable="true" position="center"
+apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('ec.gob.celec.controlador.asesor.ParametroCalificacionViewModel')">
+    <caption label="Parametrización para calificación de cargo" style="font-weight:bold"/> 
+<tabbox  id="tabboxCalificacion" width="100%" tabscroll="false" >
+        <tabs >
+            <tab label="Ponderación" sclass="menutabs"/>                          
+            <tab label="Mérito" sclass="menutabs"/>  
+            <tab label="Pruebas" sclass="menutabs"/>  
+            <tab label="Entrevista" sclass="menutabs"/> 
+            <tab label="Nivel de educación" sclass="menutabs"/>     
+	</tabs>
+        <tabpanels>
+            <tabpanel  height="100%" width="1000px"  >                
+                <grid width="50%" style="padding-left:25%" model="@load(vm.listadoAreasPonderacion)">
+                    <columns>
+                        <column>Detalle de evaluación</column>
+                        <column>Ponderación</column>
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@bind(each.beCategPeso.nbCategPeso)" style="font-weight:bold"/>
+                            <spinner value="@bind(each.vaPesoOferta)" onChange="@command('getTotal')"
+                                                format="###" constraint="no empty,min 0,max 100" />
+                        </row>
+                    </template>  
+                     <foot>
+                         <footer >                             
+                                 <label value="Total:" style="font-weight:bold" />                                                                  
+                        </footer>
+                        <footer id="footer_total" >                           
+                        </footer>
+                    </foot>                   
+                </grid>      
+                  <separator bar="true"/>
+                <vbox width="100%" align="center">
+                 <button label="Grabar" onClick="@command('grabarAreaPonderacion')"/>
+                 </vbox>
+            </tabpanel>                
+            <tabpanel>
+                <grid width="50%" style="padding-left:25%" model="@load(vm.listaMeritos)">
+                    <columns>
+                        <column>Detalle de evaluación</column>
+                        <column>Ponderación</column>
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@bind(each.beCatalogo.nbCatalogo)" style="font-weight:bold"/>
+                            <spinner value="@bind(each.vaCalificacion)" 
+                                                format="###" constraint="no empty,min 0,max 100" />
+                        </row>
+                    </template>   
+                     <foot>
+                         <footer >                             
+                                 <label value="Total:" style="font-weight:bold" />                                                                  
+                        </footer>
+                        <footer id="footer_total_merito" >                           
+                        </footer>
+                    </foot>           
+                </grid>      
+                 <separator bar="true"/>
+                <vbox width="100%" align="center">
+                 <button label="Grabar" onClick="@command('grabarMerito')"/>
+                 </vbox>    
+            </tabpanel>
+             <tabpanel>
+                <grid width="50%" style="padding-left:25%" model="@load(vm.listaPruebas)">
+                    <columns>
+                        <column>Detalle de evaluación</column>
+                        <column>Ponderación</column>
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@bind(each.beCatalogo.nbCatalogo)" style="font-weight:bold"/>
+                            <spinner value="@bind(each.vaCalificacion)" 
+                                                format="###" constraint="no empty,min 0,max 100" />
+                        </row>
+                    </template>   
+                     <foot>
+                         <footer >                             
+                                 <label value="Total:" style="font-weight:bold" />                                                                  
+                        </footer>
+                        <footer id="footer_total_prueba" >                           
+                        </footer>
+                    </foot>           
+                </grid>      
+                 <separator bar="true"/>
+                <vbox width="100%" align="center">
+                 <button label="Grabar" onClick="@command('grabarPruebas')"/>
+                 </vbox>    
+            </tabpanel>
+             <tabpanel>
+                <grid width="50%" style="padding-left:25%" model="@load(vm.listaEntrevista)">
+                    <columns>
+                        <column>Detalle de evaluación</column>
+                        <column>Ponderación</column>
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@bind(each.beCatalogo.nbCatalogo)" style="font-weight:bold"/>
+                            <spinner value="@bind(each.vaCalificacion)" 
+                                                format="###" constraint="no empty,min 0,max 100" />
+                        </row>
+                    </template>   
+                     <foot>
+                         <footer >                             
+                                 <label value="Total:" style="font-weight:bold" />                                                                  
+                        </footer>
+                        <footer id="footer_total_entrevista" >                           
+                        </footer>
+                    </foot>           
+                </grid>      
+                 <separator bar="true"/>
+                <vbox width="100%" align="center">
+                 <button label="Grabar" onClick="@command('grabarEntrevista')"/>
+                 </vbox>    
+            </tabpanel>
+             <tabpanel>
+                <grid width="50%" style="padding-left:25%" model="@load(vm.listaCalificacion)">
+                    <columns>
+                        <column>Detalle de evaluación</column>
+                        <column>Ponderación</column>
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@bind(each.beCatalogo.nbCatalogo)" style="font-weight:bold"/>
+                            <spinner value="@bind(each.vaCalificacion)" 
+                                                format="###" constraint="no empty,min 0,max 100" />
+                        </row>
+                    </template>                    
+                </grid>      
+                 <separator bar="true"/>
+                <vbox width="100%" align="center">
+                 <button label="Grabar" onClick="@command('grabarNivelEducacion')"/>
+                 </vbox>
+            </tabpanel>       
+        </tabpanels>
+</tabbox>
+</window>

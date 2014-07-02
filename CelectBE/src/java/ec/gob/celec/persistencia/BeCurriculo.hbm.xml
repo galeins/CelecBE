@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeCurriculo" table="be_curriculo" catalog="cqbolsaempleo">
+        <id name="coCurriculo" type="java.lang.Integer">
+            <column name="CO_CURRICULO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bePersona" class="ec.gob.celec.persistencia.BePersona" fetch="select" lazy="false">
+            <column name="CO_PERSONA" not-null="true" />
+        </many-to-one>
+        <property name="nbTituloCv" type="string">
+            <column name="NB_TITULO_CV" length="50" />
+        </property>
+        <property name="deCurriculo" type="string">
+            <column name="DE_CURRICULO" length="2000" />
+        </property>
+        <property name="coSalarioCv" type="java.lang.Integer">
+            <column name="CO_SALARIO_CV" />
+        </property>
+        <property name="coConduceCv" type="string">
+            <column name="CO_CONDUCE_CV" length="4">
+                <comment>Los valores son SI (Si conduce) o NO(No conduce)</comment>
+            </column>
+        </property>
+        <property name="coLicenciaCv" type="string">
+            <column name="CO_LICENCIA_CV" length="4">
+                <comment>Los valores son SI (Si posee licencia) o NO(No posee licencia)</comment>
+            </column>
+        </property>
+        <property name="coTipoLicenciaCv" type="java.lang.Integer">
+            <column name="CO_TIPO_LICENCIA_CV" />
+        </property>
+        <property name="coVehiculoCv" type="string">
+            <column name="CO_VEHICULO_CV" length="4">
+                <comment>Los valores son SI (Si posee vehiculo) o NO(No posee vehiculo)</comment>
+            </column>
+        </property>
+        <property name="coTipoVehiculoCv" type="java.lang.Integer">
+            <column name="CO_TIPO_VEHICULO_CV" />
+        </property>
+        <property name="vaDiscapacidadCv" type="string">
+            <column name="VA_DISCAPACIDAD_CV" length="5">
+                <comment>Representa Si</comment>
+            </column>
+        </property>
+        <property name="dePorcentajeDiscaCv" type="big_decimal">
+            <column name="DE_PORCENTAJE_DISCA_CV" precision="5" />
+        </property>
+        <property name="coTipoDiscapacidadCv" type="java.lang.Integer">
+            <column name="CO_TIPO_DISCAPACIDAD_CV" />
+        </property>
+        <property name="deDiscapacidadCv" type="string">
+            <column name="DE_DISCAPACIDAD_CV" length="30" />
+        </property>
+        <property name="vaViajarCv" type="string">
+            <column name="VA_VIAJAR_CV" length="5">
+                <comment>representa Si tienen o no disponibilidad para viajar valor a registrarse SI o NO</comment>
+            </column>
+        </property>
+        <property name="coAutorizaCv" type="java.lang.Integer">
+            <column name="CO_AUTORIZA_CV">
+                <comment>Representa la autorizacin del uso de la informacion por el sistema de Bolsa de empleo Valor registrado en Catlogo.</comment>
+            </column>
+        </property>
+        <property name="vaEnviarOfertasCv" type="string">
+            <column name="VA_ENVIAR_OFERTAS_CV" length="5">
+                <comment>Representa la solicirud que el usuario hace para que le envien ofertas de empleo.</comment>
+            </column>
+        </property>
+        <property name="esCurriculo" type="string">
+            <column name="ES_CURRICULO" length="20" />
+        </property>
+        <property name="deComentario" type="string">
+            <column name="DE_COMENTARIO" length="1000" />
+        </property>
+        <property name="vaNombreCv" type="string">
+            <column name="VA_NOMBRE_CV" length="500">
+                <comment>NOMBRE COMPLETO DEL CANDIDATO</comment>
+            </column>
+        </property>
+        <property name="vaApellidoCv" type="string">
+            <column name="VA_APELLIDO_CV" length="500">
+                <comment>NOMBRE COMPLETO DEL CANDIDATO</comment>
+            </column>
+        </property>
+        <property name="vaCorreoCv" type="string">
+            <column name="VA_CORREO_CV" length="200">
+                <comment>CORREO ELECTRONICO DEL CANDIDATO</comment>
+            </column>
+        </property>
+        <set name="beConocimientos" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeConocimiento" />
+        </set>
+        <set name="beCapacitacions" inverse="true" lazy="false">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCapacitacion" />
+        </set>
+        <set name="beFormAcademicas" inverse="true" lazy="false">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeFormAcademica" />
+        </set>
+        <set name="beRefePersonals" inverse="true" lazy="false">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeRefePersonal" />
+        </set>
+        <set name="beIdiomas" inverse="true" lazy="false"> 
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeIdioma" />
+        </set>
+        <set name="beExpLaborals" inverse="true" lazy="false">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeExpLaboral" />
+        </set>
+        <set name="beColocacions" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeColocacion" />
+        </set>
+        <set name="beModoEmpleoCvs" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeModoEmpleoCv" />
+        </set>
+        <set name="beComentarioCvs" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeComentarioCv" />
+        </set>
+        <set name="beCategoriaCvs" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCategoriaCv" />
+        </set>
+        <set name="beSelecionCvOfers" inverse="true">
+            <key>
+                <column name="CO_CURRICULO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeSelecionCvOfer" />
+        </set>
+    </class>
+</hibernate-mapping>

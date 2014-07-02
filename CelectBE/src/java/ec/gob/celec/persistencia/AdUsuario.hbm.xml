@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdUsuario" table="ad_usuario" catalog="cqbolsaempleo">
+        <id name="coUsuario" type="java.lang.Integer">
+            <column name="CO_USUARIO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="adGrupoUsuario" class="ec.gob.celec.persistencia.AdGrupoUsuario" fetch="select" lazy="false">
+            <column name="CO_GRUPO_USUARIO" />
+        </many-to-one>
+        <property name="nbCuentaUsu" type="string">
+            <column name="NB_CUENTA_USU" length="50" not-null="true">
+                <comment>Nombre de La cuenta de Usuario (Id Usuario)</comment>
+            </column>
+        </property>
+        <property name="deContrasenaUsu" type="string">
+            <column name="DE_CONTRASENA_USU" length="100" not-null="true" />
+        </property>
+        <property name="coPreguntaSecretaUsu" type="java.lang.Short">
+            <column name="CO_PREGUNTA_SECRETA_USU" />
+        </property>
+        <property name="deRespuestaSecretaUsu" type="string">
+            <column name="DE_RESPUESTA_SECRETA_USU" length="50" />
+        </property>
+        <property name="feRegistroUsu" type="date">
+            <column name="FE_REGISTRO_USU" length="10" not-null="true" />
+        </property>
+        <property name="esUsuario" type="string">
+            <column name="ES_USUARIO" length="20" not-null="true" />
+        </property>
+        <property name="esAsesorParaDcp" type="string">
+            <column name="ES_ASESOR_PARA_DCP" length="5" />
+        </property>
+        <set name="adAuditorias" inverse="true">
+            <key>
+                <column name="CO_USUARIO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdAuditoria" />
+        </set>
+        <set name="beOfertaEmpleos" inverse="true">
+            <key>
+                <column name="CO_USUARIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="bePersonas" inverse="true" lazy="false">
+            <key>
+                <column name="CO_USUARIO" not-null="true">
+                    <comment>Representa el valor nico de la tabla</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beColocacions" inverse="true">
+            <key>
+                <column name="CO_USUARIO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeColocacion" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeRefeEmpresa" table="be_refe_empresa" catalog="cqbolsaempleo">
+        <id name="coRefeEmpresa" type="java.lang.Integer">
+            <column name="CO_REFE_EMPRESA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogo" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select">
+            <column name="CO_TIPO_REFERENCI" />
+        </many-to-one>
+        <many-to-one name="beEmpresa" class="ec.gob.celec.persistencia.BeEmpresa" fetch="select">
+            <column name="CO_EMPRESA" not-null="true" />
+        </many-to-one>
+        <property name="nbRefeEmpresa" type="string">
+            <column name="NB_REFE_EMPRESA" length="50" not-null="true" />
+        </property>
+        <property name="nbContactoRefeEmpresa" type="string">
+            <column name="NB_CONTACTO_REFE_EMPRESA" length="30" not-null="true" />
+        </property>
+        <property name="nuTelefonoRefeEmpresa" type="string">
+            <column name="NU_TELEFONO_REFE_EMPRESA" length="25" not-null="true" />
+        </property>
+        <property name="deDireccionRefeEmpresa" type="string">
+            <column name="DE_DIRECCION_REFE_EMPRESA" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeSelecionCvOfer" table="be_selecion_cv_ofer" catalog="cqbolsaempleo">
+        <id name="coSeleccionCvOfer" type="java.lang.Integer">
+            <column name="CO_SELECCION_CV_OFER" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beOfertaEmpleo" class="ec.gob.celec.persistencia.BeOfertaEmpleo" fetch="select" lazy="false">
+            <column name="CO_OFERTA_EMPLEO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beCurriculo" class="ec.gob.celec.persistencia.BeCurriculo" fetch="select" lazy="false">
+            <column name="CO_CURRICULO" />
+        </many-to-one>
+        <property name="vaCalificacionSeleccionCv" type="big_decimal">
+            <column name="VA_CALIFICACION_SELECCION_CV" precision="5" />
+        </property>
+        <property name="esSeleccionCvOfer" type="string">
+            <column name="ES_SELECCION_CV_OFER" length="20" />
+        </property>
+        <property name="deProcesadoxSeleccionCv" type="string">
+            <column name="DE_PROCESADOX_SELECCION_CV" length="15" />
+        </property>
+        <set name="beEvaluacionCvs" inverse="true">
+            <key>
+                <column name="CO_SELECCION_CV_OFER" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeEvaluacionCv" />
+        </set>
+    </class>
+</hibernate-mapping>

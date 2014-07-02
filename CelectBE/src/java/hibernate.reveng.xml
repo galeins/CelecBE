@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="cqbolsaempleo"/>
+  <table-filter match-name="ad_sistema"/>
+  <table-filter match-name="be_colocacion"/>
+  <table-filter match-name="be_agencia"/>
+  <table-filter match-name="be_catalogo"/>
+  <table-filter match-name="be_persona"/>
+  <table-filter match-name="be_selecion_cv_ofer"/>
+  <table-filter match-name="ad_cabecera_empresa"/>
+  <table-filter match-name="be_peso_oferta"/>
+  <table-filter match-name="ad_grupo_usuario"/>
+  <table-filter match-name="be_curriculo"/>
+  <table-filter match-name="be_capacitacion"/>
+  <table-filter match-name="be_categ_peso"/>
+  <table-filter match-name="be_form_academica"/>
+  <table-filter match-name="be_categ_oferta"/>
+  <table-filter match-name="be_empresa"/>
+  <table-filter match-name="be_conocimiento"/>
+  <table-filter match-name="be_refe_personal"/>
+  <table-filter match-name="be_evaluacion_cv"/>
+  <table-filter match-name="be_exp_laboral"/>
+  <table-filter match-name="ad_menu_sistema"/>
+  <table-filter match-name="be_seg_colocacion"/>
+  <table-filter match-name="be_comentario_cv"/>
+  <table-filter match-name="ad_usuario"/>
+  <table-filter match-name="ad_permiso_menu"/>
+  <table-filter match-name="be_idioma"/>
+  <table-filter match-name="ad_auditoria"/>
+  <table-filter match-name="be_oferta_empleo"/>
+  <table-filter match-name="be_modo_empleo_cv"/>
+  <table-filter match-name="be_categoria_cv"/>
+  <table-filter match-name="be_comentario_oferta"/>
+  <table-filter match-name="be_refe_empresa"/>
+  <table-filter match-name="ad_estilo_plantilla"/>
+  <table-filter match-name="be_modo_empleo_oferta"/>
+  <table-filter match-name="be_calificacion_educacion"/>
+</hibernate-reverse-engineering>

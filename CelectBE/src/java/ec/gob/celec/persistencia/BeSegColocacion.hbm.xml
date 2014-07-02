@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeSegColocacion" table="be_seg_colocacion" catalog="cqbolsaempleo">
+        <id name="coSegColocacion" type="java.lang.Integer">
+            <column name="CO_SEG_COLOCACION" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beColocacion" class="ec.gob.celec.persistencia.BeColocacion" fetch="select">
+            <column name="CO_COLOCACION" not-null="true" />
+        </many-to-one>
+        <property name="nbContactoSegCol" type="string">
+            <column name="NB_CONTACTO_SEG_COL" length="30" />
+        </property>
+        <property name="nbCargoContactoSegCol" type="string">
+            <column name="NB_CARGO_CONTACTO_SEG_COL" length="30" />
+        </property>
+        <property name="feSegColocacion" type="date">
+            <column name="FE_SEG_COLOCACION" length="10" />
+        </property>
+        <property name="coPermanenciaSegCol" type="string">
+            <column name="CO_PERMANENCIA_SEG_COL" length="10" />
+        </property>
+        <property name="deComentarioSegColo" type="string">
+            <column name="DE_COMENTARIO_SEG_COLO" length="500" />
+        </property>
+        <property name="vaSalidaSegCol" type="string">
+            <column name="VA_SALIDA_SEG_COL" length="5">
+                <comment>Representa si la persona sigue o no en la empresa valores a registrar (SI o NO)</comment>
+            </column>
+        </property>
+        <property name="deSalidaSegCol" type="string">
+            <column name="DE_SALIDA_SEG_COL" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

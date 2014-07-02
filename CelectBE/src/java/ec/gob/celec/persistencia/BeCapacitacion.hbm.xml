@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeCapacitacion" table="be_capacitacion" catalog="cqbolsaempleo">
+        <id name="coCapacitacion" type="java.lang.Integer">
+            <column name="CO_CAPACITACION" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogo" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select">
+            <column name="CO_AREA_ESTUDIO" />
+        </many-to-one>
+        <many-to-one name="beCurriculo" class="ec.gob.celec.persistencia.BeCurriculo" fetch="select">
+            <column name="CO_CURRICULO" not-null="true" />
+        </many-to-one>
+        <property name="nbCursoRealizado" type="string">
+            <column name="NB_CURSO_REALIZADO" length="500" />
+        </property>
+        <property name="nbInstitucion" type="string">
+            <column name="NB_INSTITUCION" length="60" />
+        </property>
+        <property name="nbLugar" type="string">
+            <column name="NB_LUGAR" length="500" />
+        </property>
+        <property name="nuAnioGrado" type="java.lang.Integer">
+            <column name="NU_ANIO_GRADO" />
+        </property>
+        <property name="nuHoras" type="java.lang.Integer">
+            <column name="NU_HORAS" />
+        </property>
+        <property name="nbDescripcion" type="string">
+            <column name="NB_DESCRIPCION" length="1000" />
+        </property>
+        <property name="esEstado" type="string">
+            <column name="ES_ESTADO" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

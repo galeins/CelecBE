@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeEmpresa" table="be_empresa" catalog="cqbolsaempleo">
+        <id name="coEmpresa" type="java.lang.Integer">
+            <column name="CO_EMPRESA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bePersona" class="ec.gob.celec.persistencia.BePersona" fetch="select">
+            <column name="CO_PERSONA" not-null="true" />
+        </many-to-one>
+        <property name="nbEmpresa" type="string">
+            <column name="NB_EMPRESA" length="80" not-null="true" />
+        </property>
+        <property name="nbComercialEmp" type="string">
+            <column name="NB_COMERCIAL_EMP" length="40" not-null="true" />
+        </property>
+        <property name="coPernaturalEmp" type="int">
+            <column name="CO_PERNATURAL_EMP" not-null="true" />
+        </property>
+        <property name="nuRucEmp" type="string">
+            <column name="NU_RUC_EMP" length="15" not-null="true" />
+        </property>
+        <property name="deDireccionEmp" type="string">
+            <column name="DE_DIRECCION_EMP" length="100" not-null="true" />
+        </property>
+        <property name="coTipoEmp" type="int">
+            <column name="CO_TIPO_EMP" not-null="true" />
+        </property>
+        <property name="coProvEmp" type="int">
+            <column name="CO_PROV_EMP" not-null="true" />
+        </property>
+        <property name="coCantonEmp" type="int">
+            <column name="CO_CANTON_EMP" not-null="true" />
+        </property>
+        <property name="coSectorEmp" type="java.lang.Integer">
+            <column name="CO_SECTOR_EMP" />
+        </property>
+        <property name="deBarrioEmp" type="string">
+            <column name="DE_BARRIO_EMP" length="30" not-null="true" />
+        </property>
+        <property name="nuFonoEmp" type="string">
+            <column name="NU_FONO_EMP" length="25" not-null="true" />
+        </property>
+        <property name="dePagwebEmp" type="string">
+            <column name="DE_PAGWEB_EMP" length="50" not-null="true" />
+        </property>
+        <property name="coIndustriaEmp" type="int">
+            <column name="CO_INDUSTRIA_EMP" not-null="true" />
+        </property>
+        <property name="coVentasEmp" type="java.lang.Integer">
+            <column name="CO_VENTAS_EMP" />
+        </property>
+        <property name="coNumempleadosEmp" type="int">
+            <column name="CO_NUMEMPLEADOS_EMP" not-null="true" />
+        </property>
+        <property name="deProductosEmp" type="string">
+            <column name="DE_PRODUCTOS_EMP" length="100" not-null="true" />
+        </property>
+        <property name="deDescripcionEmp" type="string">
+            <column name="DE_DESCRIPCION_EMP" length="500" not-null="true" />
+        </property>
+        <property name="nbRepreLegalEmp" type="string">
+            <column name="NB_REPRE_LEGAL_EMP" length="60" not-null="true" />
+        </property>
+        <property name="apRepreLegalEmp" type="string">
+            <column name="AP_REPRE_LEGAL_EMP" length="45" not-null="true" />
+        </property>
+        <property name="coGenereoRepreLegalEmp" type="int">
+            <column name="CO_GENEREO_REPRE_LEGAL_EMP" not-null="true" />
+        </property>
+        <property name="nuCelularRepreLegalEmp" type="string">
+            <column name="NU_CELULAR_REPRE_LEGAL_EMP" length="15" />
+        </property>
+        <property name="nuCedulaRepreLegalEmp" type="string">
+            <column name="NU_CEDULA_REPRE_LEGAL_EMP" length="15" not-null="true" />
+        </property>
+        <property name="nuFonoRepreLegalEmp" type="string">
+            <column name="NU_FONO_REPRE_LEGAL_EMP" length="15" />
+        </property>
+        <property name="imFotoEmp" type="binary">
+            <column name="IM_FOTO_EMP" />
+        </property>
+        <property name="dePathFotoEmp" type="string">
+            <column name="DE_PATH_FOTO_EMP" length="60" />
+        </property>
+        <property name="deBajaEmp" type="string">
+            <column name="DE_BAJA_EMP" length="310" />
+        </property>
+        <property name="esEmpresa" type="string">
+            <column name="ES_EMPRESA" length="15" />
+        </property>
+        <property name="nbMailRepreLegalEmpr" type="string">
+            <column name="NB_MAIL_REPRE_LEGAL_EMPR" length="45" />
+        </property>
+        <set name="beOfertaEmpleos" inverse="true">
+            <key>
+                <column name="CO_EMPRESA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beRefeEmpresas" inverse="true">
+            <key>
+                <column name="CO_EMPRESA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeRefeEmpresa" />
+        </set>
+    </class>
+</hibernate-mapping>

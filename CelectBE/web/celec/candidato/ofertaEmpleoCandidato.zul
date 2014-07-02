@@ -1,0 +1,6 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg1="/celec/general/templateCelec.zul"?>
+<vbox self="@define(content)" >
+    <include src="/celec/general/ofertasEmpleo.zul"/>
+</vbox>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/06/2014 11:55:07 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeCalificacionEducacion" table="be_calificacion_educacion" catalog="cqbolsaempleo">
+        <id name="coCalificacionEducacion" type="java.lang.Integer">
+            <column name="co_Calificacion_Educacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogo" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="co_Codigo_Nivel_Educaion" />
+        </many-to-one>
+        <many-to-one name="beOfertaEmpleo" class="ec.gob.celec.persistencia.BeOfertaEmpleo" fetch="select" lazy="false">
+            <column name="Co_Oferta_Empleo" />
+        </many-to-one>
+        <property name="vaCalificacion" type="java.lang.Integer">
+            <column name="va_Calificacion" />
+        </property>
+        <property name="vaTipoOferta" type="string">
+            <column name="va_Tipo_Oferta" />
+        </property>
+    </class>
+</hibernate-mapping>

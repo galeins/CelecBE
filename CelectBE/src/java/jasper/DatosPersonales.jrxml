@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DatosPersonales" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_CODIGO_USUARIO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_FOTO" class="java.io.InputStream"/>
+	<queryString language="hql">
+		<![CDATA[select a.coPersona as CODIGO_PERSONA,a.nbPersona as NOMBRES, a.apPersona as APELLIDOS,
+a.nuIdentificaciobPer as NUMERO_IDENTIFICACION,
+a.beCatalogoByCoTipoIdentificacionPer.nbCatalogo AS TIPO_IDENTIFICACION,
+a.feNacimientoPer as FECHA_NACIMIENTO,
+a.beCatalogoByCoGeneroPer.nbCatalogo AS GENERO_DESCRIPCION,
+a.beCatalogoByCoEstadoCivilPer.nbCatalogo AS ESTADO_CIVIL_DESCRIPCION,
+a.vaExtranjeroPer as EXTRANJERO,
+a.deNacionalidadPer as NACIONALIDAD,
+a.nbCiudadResidePer as CIUDAD_ORIGEN,
+a.beCatalogoByCoPaisResidePer.nbCatalogo as PAIS_RESIDENCIA,
+a.feResidePer as FECHA_RESIDENCIA,
+a.deDomicilioPer as DOMICILIO,
+a.beCatalogoByCoProvinciaPer.nbCatalogo AS PROVINCIA,
+a.coCantonPer as CANTON,
+a.nuTelefonoPer as TELEFONO_CONVENCIONAL,
+a.nuCelularFono as NUMERO_CELULAR,
+a.deEmailPer as CORREO_ELECTRONICO,
+a.vaPoseeLincenciaPer as POSEE_LICENCIA,
+a.beCatalogoByCoTipoLicenciaPer.nbCatalogo AS TIPO_LICENCIA,
+a.vaDiscapacidadPer as TIENE_DISCAPACIDAD,
+a.beCatalogoByCoTipoDiscapacidad.nbCatalogo AS TIPO_DISCAPACIDAD,
+a.nuCarnetConadisPer as NU_CARNET_CONADIS_PER,
+a.nuPorcentajeDiscapacidadPer as  NU_PORCENTAJE_DISCAPACIDAD_PER,
+a.beCatalogoByCoGrupoEtnicoPer.nbCatalogo as GRUPO_ETNICO,
+a.vaDisponibilidadParaViajarPer as DISPONIBILIDAD_VIAJAR,
+a.imFotoPer as IM_FOTO_PER
+from BePersona a
+where a.adUsuario.coUsuario=$P{P_CODIGO_USUARIO}]]>
+	</queryString>
+	<field name="CODIGO_PERSONA" class="java.lang.Integer"/>
+	<field name="NOMBRES" class="java.lang.String"/>
+	<field name="APELLIDOS" class="java.lang.String"/>
+	<field name="NUMERO_IDENTIFICACION" class="java.lang.String"/>
+	<field name="TIPO_IDENTIFICACION" class="java.lang.String"/>
+	<field name="FECHA_NACIMIENTO" class="java.util.Date"/>
+	<field name="GENERO_DESCRIPCION" class="java.lang.String"/>
+	<field name="ESTADO_CIVIL_DESCRIPCION" class="java.lang.String"/>
+	<field name="EXTRANJERO" class="java.lang.String"/>
+	<field name="NACIONALIDAD" class="java.lang.String"/>
+	<field name="CIUDAD_ORIGEN" class="java.lang.String"/>
+	<field name="PAIS_RESIDENCIA" class="java.lang.String"/>
+	<field name="FECHA_RESIDENCIA" class="java.util.Date"/>
+	<field name="DOMICILIO" class="java.lang.String"/>
+	<field name="PROVINCIA" class="java.lang.String"/>
+	<field name="CANTON" class="java.lang.Integer"/>
+	<field name="TELEFONO_CONVENCIONAL" class="java.lang.String"/>
+	<field name="NUMERO_CELULAR" class="java.lang.String"/>
+	<field name="CORREO_ELECTRONICO" class="java.lang.String"/>
+	<field name="POSEE_LICENCIA" class="java.lang.String"/>
+	<field name="TIPO_LICENCIA" class="java.lang.String"/>
+	<field name="TIENE_DISCAPACIDAD" class="java.lang.String"/>
+	<field name="TIPO_DISCAPACIDAD" class="java.lang.String"/>
+	<field name="NU_CARNET_CONADIS_PER" class="java.lang.String"/>
+	<field name="NU_PORCENTAJE_DISCAPACIDAD_PER" class="java.lang.String"/>
+	<field name="GRUPO_ETNICO" class="java.lang.String"/>
+	<field name="DISPONIBILIDAD_VIAJAR" class="java.lang.String"/>
+	<field name="IM_FOTO_PER" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="333" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="112" y="58" width="427" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRES} + " " + $F{APELLIDOS}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize" isUsingCache="false">
+				<reportElement x="52" y="15" width="78" height="76"/>
+				<imageExpression><![CDATA[$P{P_FOTO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="112" y="15" width="427" height="31"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOJA DE VIDA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="116" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_IDENTIFICACION} + ":"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="116" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMERO_IDENTIFICACION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="420" y="116" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_NACIMIENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="116" width="135" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="134" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GENERO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="134" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GENERO_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="134" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO CIVIL:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="134" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ESTADO_CIVIL_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="152" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿EXTRANJERO?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="152" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXTRANJERO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="153" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NACIONALIDAD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="153" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NACIONALIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="170" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIUDAD DE ORIGEN]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="170" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIUDAD_ORIGEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="188" width="112" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAIS DE RESIDENCIA:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="188" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAIS_RESIDENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="188" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESIDE DESDE:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="188" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_RESIDENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="206" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOMICILIO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement x="139" y="206" width="423" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOMICILIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="170" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="170" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVINCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="225" width="112" height="24"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO
+CONVENCIONAL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="229" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEFONO_CONVENCIONAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="225" width="100" height="24"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO
+CELULAR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="230" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUMERO_CELULAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="254" width="100" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORREO ELECTRÓNICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="254" width="154" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CORREO_ELECTRONICO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="272" width="100" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿POSEE LICENCIA?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="274" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{POSEE_LICENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="274" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE LICENCIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="274" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_LICENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="294" width="100" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿TIENE DISCAPACIDAD?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="294" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIENE_DISCAPACIDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="294" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[# CARNET DISCAPCIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="315" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO_ETNICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="422" y="315" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GRUPO_ETNICO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="254" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISPONIBILIDAD_VIAJAR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="254" width="142" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DISPONIBILIDAD_VIAJAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="294" width="143" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NU_CARNET_CONADIS_PER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="313" width="100" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% DISCAPACIDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="313" width="122" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NU_PORCENTAJE_DISCAPACIDAD_PER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="538" splitType="Stretch">
+			<subreport>
+				<reportElement x="9" y="2" width="568" height="100"/>
+				<subreportParameter name="P_CODIGO_PERSONA">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_PERSONA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HIBERNATE_SESSION">
+					<subreportParameterExpression><![CDATA[$P{HIBERNATE_SESSION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FormacionAcademica.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="9" y="112" width="568" height="100"/>
+				<subreportParameter name="P_CODIGO_PERSONA">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_PERSONA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HIBERNATE_SESSION">
+					<subreportParameterExpression><![CDATA[$P{HIBERNATE_SESSION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Capacitacion.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="11" y="223" width="566" height="87"/>
+				<subreportParameter name="P_CODIGO_PERSONA">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_PERSONA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HIBERNATE_SESSION">
+					<subreportParameterExpression><![CDATA[$P{HIBERNATE_SESSION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ExperienciaLaboral.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="11" y="321" width="566" height="100"/>
+				<subreportParameter name="P_CODIGO_PERSONA">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_PERSONA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HIBERNATE_SESSION">
+					<subreportParameterExpression><![CDATA[$P{HIBERNATE_SESSION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Idiomas.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="11" y="429" width="566" height="100"/>
+				<subreportParameter name="P_CODIGO_PERSONA">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_PERSONA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HIBERNATE_SESSION">
+					<subreportParameterExpression><![CDATA[$P{HIBERNATE_SESSION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReferenciasPersonales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="57" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

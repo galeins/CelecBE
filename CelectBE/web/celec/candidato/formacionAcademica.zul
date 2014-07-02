@@ -1,0 +1,70 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.FormacionAcademicaViewModel')" width="1000px" >
+<listbox id="listboxFormacion" width="1000px" model="@load(vm.listaFormacionAcademica)" 
+         nonselectableTags="*" checkmark="true" onSelect="@command('seleccionarBorrado')">
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+        <auxhead>
+            <auxheader colspan="4" >Formación académica</auxheader>
+        </auxhead>       
+        <listhead sizable="true">
+             <listheader image="/imagenes/book_delete.png" width="35px"></listheader>
+             <listheader label="Nivel"  width="125px" align="center"></listheader>
+             <listheader label="Area de estudio" width="260px" align="center"></listheader>
+             <listheader label="Institución" width="200px" align="center"></listheader>
+             <listheader label="Titulo Obtenido" width="200px" align="center"></listheader>
+             <listheader label="Año grado" width="70px" align="center"></listheader>
+             <listheader label="# SENESCYT" width="110px" align="center"></listheader>                    
+         </listhead>
+        <template name="model">                                                            
+            <listitem>  
+                <listcell>                                
+                </listcell>
+                <listcell>                                                       
+                     <combobox width="100%" model="@load(vm.listaNivelEducacion)"   
+                             selectedItem="@bind(each.beCatalogoByCoNivelEstudio)" value="@bind(each.beCatalogoByCoNivelEstudio.nbCatalogo)" readonly="true">
+                      <template name="model">
+                      <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                       </template>
+                    </combobox>                           
+                </listcell>
+                <listcell>
+                   <combobox width="100%" model="@load(vm.listaAreaEstudio)"   
+                             selectedItem="@bind(each.beCatalogoByCoAreEstudio)" value="@bind(each.beCatalogoByCoAreEstudio.nbCatalogo)" readonly="true">
+                      <template name="model">
+                           <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                       </template>
+                    </combobox> 
+                </listcell>
+                <listcell>
+                    <textbox value="@bind(each.nbInstitucion)" width="96%"/>
+                </listcell>
+                <listcell>
+                    <textbox value="@bind(each.nbEstudioRealizado)" width="96%"/>
+                </listcell>
+                <listcell>
+                      <spinner value="@bind(each.nuAnioGrado)"
+                                    format="##" constraint="no empty,min 1900,max 2800" width="90%" />                              
+                </listcell>
+                  <listcell>
+                    <intbox value="@bind(each.nuNumeroSenescyt)" width="94%" />
+                </listcell>
+            </listitem>
+        </template>
+</listbox>
+
+<grid>
+    <rows>
+        <row>
+            <cell align="center">
+                <hbox>
+                    <button label="Nuevo" onClick="@command('insertarRegistro')"></button> 
+                  <separator bar="true"/>             
+                <button label="Grabar formación" onClick="@command('grabar')"></button>
+                </hbox>
+                
+            </cell>              
+        </row>
+    </rows>
+</grid>            
+</div>

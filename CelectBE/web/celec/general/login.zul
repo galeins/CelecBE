@@ -1,0 +1,38 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?page title="Ingreso CELEC" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="loginWin" border="none" style="height:auto"
+apply="ec.gob.celec.controlador.general.LoginController">
+<borderlayout height="650px" width="100%">
+<north  maxsize="300" size="80px" splittable="false" collapsible="false">
+  <div style="background:#0B56A4" height="100%">
+                  <groupbox contentStyle="border: 4px black" height="60px" >
+                                  <hlayout spacing="30px" style="padding-top: 20px;">
+                                                <label value="Usuario: " style="color:white;font-weight:bold"/>	  									
+                                                <textbox id="account" width="100%"  value="asesor2" constraint="no empty: Ingrese su nombre de usuario."/>						
+                                                <label value="Contraseña: " style="color:white;font-weight:bold"/>	
+                                                <textbox id="password" value="asesor" type="password" constraint="no empty: Ingrese una clave." width="100%"/>						
+                                                <button label="ENTRAR"  width="100%" id="buttonEntrar"/>							
+                                                <div style="padding-top:6px">
+                                                    <a id="linkOlvideContrasena"><label value="Olvidé mi contraseña" style="color:white;font-weight:bold"/></a>	
+                                                </div>
+                                                <div style="padding-top:6px">
+                                                    <a id="linkRegistrarme"><label value="Registrarme" style="color:white;font-weight:bold"/></a>		
+                                                </div>
+                                                
+                                  </hlayout>		
+                                  <label id="message" sclass="warn" value="" />
+                   </groupbox>                   
+   </div>
+</north>
+<west  width="25%" >
+      <hlayout spacing="10px" style="border:1px;padding-top:20px;padding-left:5px" width="90%">
+        <image src="/imagenes/Logo_Celec.png" height="15%" width="100%"/>
+      </hlayout>
+</west>
+<center >
+    <include src="/celec/general/ofertasEmpleo.zul"/>
+</center>
+<south></south></borderlayout>
+</window>
+</zk>

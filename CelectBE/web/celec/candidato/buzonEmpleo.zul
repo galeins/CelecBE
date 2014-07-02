@@ -1,0 +1,29 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/celec/general/templateCelec.zul"?>
+<hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.BuzonEmpleoViewModel')">
+    <grid model="@load(vm.listadoBeSeleccionCvOfer)">  
+        <auxhead>
+            <auxheader colspan="4" style="font-size:26px;font-weight:bold;padding-left:20px" label="Buzón de Empleo">  
+            </auxheader>        
+    </auxhead>        
+        <columns height="80px;">
+            <column width="15%" align="center" style="font-size:18px;font-weight:bold;color:white;background:#0B56A4;white-space: normal;" label="Código del proceso" ></column>
+            <column width="50%" align="center" style="font-size:18px;font-weight:bold;color:white;background:#0B56A4" label="Denominación del cargo"> </column>
+            <column width="15%" align="center" style="font-size:18px;font-weight:bold;color:white;background:#0B56A4;white-space: normal;" label="Estado del proceso"> </column>
+            <column width="20%" align="center" style="font-size:18px;font-weight:bold;color:white;background:#0B56A4" label="Resultado"></column>
+        </columns>
+        <template name="model">
+            <row>
+                <a onClick="@command('verOferta',codigoOferta=each.beOfertaEmpleo.coOfertaEmpleo)">
+                    <label value="@bind(each.beOfertaEmpleo.coCodigoOfertaOfe)"/>
+                </a>
+                <label value="@bind(each.beOfertaEmpleo.nbOfertaEmpleo)"/>
+                <label value="@bind(each.beOfertaEmpleo.esOfertaEmpleo)"/>
+                <label value="@bind(each.esSeleccionCvOfer)"/>
+            </row>
+        </template>
+              
+    </grid>
+</hbox>

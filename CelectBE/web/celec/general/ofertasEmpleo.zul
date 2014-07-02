@@ -1,0 +1,53 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('ec.gob.celec.controlador.general.ViewModel.OfertasViewModel')">
+    <hbox>
+    <grid>
+    <columns>
+        <column></column>
+        <column></column>
+        <column></column>
+    </columns>
+    <rows>
+        <row>
+            <cell align="right">
+                 <label  value="Seleccione una categoria" sclass="labelTitulo"/> 
+            </cell>
+            <cell style="padding-left:15px;padding-right:5px;padding-top:8px" width="85%" >                     
+                        <combobox id="comboCategoria1" model="@load(vm.catalogoCategoria)"  
+                                  readonly="true" style="width:300px" selectedItem="@bind(vm.beCatalogo)"  constraint="no empty: Seleccione una categoría.">
+                              <template name="model">
+                                    <comboitem  value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                              </template>
+                        </combobox>
+              </cell> 
+                <cell width="100%" > 
+                        <button image="/imagenes/BotonBuscar.png" style="border:0px;width=90%" onClick="@command('buscarOfertas')"/>            
+                </cell>
+            </row>
+        </rows>
+</grid>
+</hbox>
+<hbox>
+             <grid style="border:3px" id="gridOfertas1" model="@load(vm.datosOfertaEmpleo)" width="100%"
+             emptyMessage="No existen ofertas." mold="paging" pageSize="3">
+    		<columns>
+		    <column label="Ofertas de Empleo" width="100%" align="left" style="font-size:26px;font-weight:bold;padding-left:20px"/>			
+		</columns>
+                <template name="model">
+                    <row width="100%" style="border:normal:padding-left:10px">
+                        <div align="left" style="padding-left:15px">                        
+                            <label value="@bind(each.nbOfertaEmpleo)" width="600px" style="font-size:18px;color:blue"/> 
+                            <separator bar="false"/>
+                           <label value="@bind(each.vaObjetivoCargoOfe)" /> 
+                           <separator bar="true"/>
+                           <a onClick="@command('verOferta',codigoOferta=each.coOfertaEmpleo)">
+                               <label value="Leer más" style="color:red"/>
+                           </a>                        
+                        <separator bar="false"/>
+                        <button label="Aplicar a esta oferta de empleo" id="@bind(each.coOfertaEmpleo)" onClick="@command('aplicarOferta',codigoOferta=each.coOfertaEmpleo)" ></button>   
+                        </div>                     
+                    </row>
+                </template>		
+            </grid>
+    </hbox>
+</div>

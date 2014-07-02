@@ -1,0 +1,28 @@
+<window title="Recuperar clave" width="40%"  height="30%" closable="true" id="ventanaOlvidoClave"
+apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.RecuperarClaveViewModel')">
+    <grid>
+        <columns>
+            <column></column>
+            <column></column>
+        </columns>
+        <rows>
+            <row>
+                <cell colspan="2">
+               <label value="Su contraseña será enviada al correo electrónico que ingrese.
+Este correo debe estar registrado en nuestra base de datos."/> 
+              </cell>
+            </row>
+            <row>
+                Correo electrónico:
+                <textbox id="textboxCorreoElectronico" value="" width="200px" constraint="/.+@.+\.[a-z]+/: Por favor ingrese un correo electrónico válido."/>
+            </row>
+            <row>
+                <cell colspan="2" align="center">
+                   <button label="Recuperar clave" onClick="@command('recuperarClave')"></button> 
+                </cell>
+                
+            </row>
+        </rows>
+    </grid>
+</window>

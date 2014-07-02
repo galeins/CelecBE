@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BePesoOferta" table="be_peso_oferta" catalog="cqbolsaempleo">
+        <id name="coPesoOferta" type="java.lang.Integer">
+            <column name="CO_PESO_OFERTA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beOfertaEmpleo" class="ec.gob.celec.persistencia.BeOfertaEmpleo" fetch="select" lazy="false">
+            <column name="CO_OFERTA_EMPLEO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beCategPeso" class="ec.gob.celec.persistencia.BeCategPeso" fetch="select" lazy="false">
+            <column name="CO_CATEG_PESO" not-null="true" />
+        </many-to-one>
+        <property name="vaPesoOferta" type="big_decimal">
+            <column name="VA_PESO_OFERTA" precision="5" />
+        </property>
+        <property name="vaEvaPesoOferta" type="big_decimal">
+            <column name="VA_EVA_PESO_OFERTA" precision="5" />
+        </property>
+        <set name="beEvaluacionCvs" inverse="true">
+            <key>
+                <column name="CO_PESO_OFERTA" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeEvaluacionCv" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<window  width="600px" mode="overlapped" closable="true" position="center" id="ventanaRegistrame"
+apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.general.ViewModel.RegistrameViewModel')"
+>
+    <caption label="Registro de nuevo usuario" style="font-weight:bold"/> 
+    <zscript><![CDATA[
+    import org.zkforge.bwcaptcha.Captcha;
+         
+    void verifyCaptcha(Textbox tbox,Captcha capt){
+        if(!capt.getValue().equalsIgnoreCase(tbox.getValue())){ captchaValido.setValue("Error");throw new WrongValueException(tbox,"Código incorrecto!\n Ingrese el texto que se visualiza en el gráfico.");
+ }
+    }
+ 
+    void verifyCaptchaIgnoreCase(Textbox tbox,Captcha capt){
+        if(!capt.getValue().equalsIgnoreCase(tbox.getValue())){ throw new WrongValueException(tbox,"Código incorrecto!"); }
+    }
+        
+    void verificarClavesRepetidas(Textbox tbox1,Textbox tbox2){
+        if (tbox1.getValue()!=tbox2.getValue)
+        {
+           throw new WrongValueException(tbox2,"Las claves ingresadas no coinciden.Vuelva a ingresar la clave.");}
+        }
+     void cerrarVentana(Window ventana)
+     {
+        m = ventana;
+        if (Messagebox.show("Seguro que desea salir del registro de usuario?", "Salir", Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == Messagebox.YES) 
+        {   
+          m.detach();
+        }
+     }
+]]></zscript>
+    <grid span="true" sizedByContent="true">       
+        <columns> 
+            <column width="100%">
+                
+            </column>
+        </columns>
+		<rows>
+			<row>	
+                            <vbox >
+                                <label value="Información de la cuenta" sclass="labelGrupoRegistrame"/>  
+                                <separator bar="true"/>   
+                                 <hbox pack="center">
+                                  Nombre de usuario:     <textbox value="@bind(vm.adUsuario.nbCuentaUsu)" sclass="textBoxRegistrarme" maxlength="12" constraint="no empty: El nombre de usuario es obligatorio" onCreate="self.focus()"  onChange="@command('buscarUsuario')"/> 
+                                 </hbox>           
+                                <hbox style="padding-left:40px" >
+                                  Contraseña:     <textbox value="@bind(vm.adUsuario.deContrasenaUsu)" id="clave" type="password" sclass="textBoxRegistrarme" constraint="no empty: Ingrese una contraseña."/> 
+                                </hbox>         
+                                <hbox pack="center" style="padding-left:2px">
+                                  Repetir contraseña:     <textbox value="@bind(vm.claveRepetir)" type="password" sclass="textBoxRegistrarme" onChanged="verificarClavesRepetidas(clave,self)" /> 
+                                </hbox>                         
+                            </vbox>                          
+			</row>
+                        <row>
+                             <vbox>
+                                <label value="Información personal" sclass="labelGrupoRegistrame"/>  
+                                <separator bar="true"/>   
+                                 <hbox style="padding-left:6px">
+                                  Nombres completos:     <textbox value="@bind(vm.bePersona.nbPersona)" sclass="textBoxRegistrarme" constraint="no empty: Ingrese sus nombres completos"/> 
+                                </hbox>           
+                                <hbox style="padding-left:6px">
+                                  Apellidos completos:     <textbox value="@bind(vm.bePersona.apPersona)" sclass="textBoxRegistrarme" constraint="no empty: Ingrese sus apellidos completos"/> 
+                                </hbox>         
+                                <hbox style="padding-left:1px">
+                                  Tipo de identificación:     
+                                    <combobox width="435px" model="@load(vm.listaTiposIdentificacion)" 
+                                    selectedItem="@bind(vm.tipoIdentificacion)" readonly="true">
+                                        <template name="model">
+                                            <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                        </template>
+                                    </combobox> 
+                                </hbox>                         
+                                <hbox style="padding-left:45px">
+                                  Identificación:     <textbox value="@bind(vm.bePersona.nuIdentificaciobPer)" sclass="textBoxRegistrarme" constraint="no empty: Ingrese su número de documento."/> 
+                                </hbox>  
+                                <hbox style="padding-left:65px">
+                                  Dirección:     <textbox value="@bind(vm.bePersona.deDomicilioPer)" sclass="textBoxRegistrarme" constraint="no empty: Ingrese la dirección de su domicilio."/> 
+                                </hbox> 
+                                 <hbox style="padding-left:70px">
+                                  Teléfono:     <intbox value="@bind(vm.bePersona.nuTelefonoPer)" sclass="textBoxRegistrarme" constraint="no empty: Ingrese el número de telefono."/> 
+                                </hbox>  
+                                <hbox style="padding-left:16px">
+                                  Correo electrónico:     <textbox value="@bind(vm.bePersona.deEmailPer)" sclass="textBoxRegistrarme"  constraint="/.+@.+\.[a-z]+/: Por favor ingrese un correo electrónico válido." onChange="@command('buscarCorreo')"/> 
+                                </hbox>                        
+                            </vbox>            
+                        </row>
+                        <row>
+                            <vbox>
+                                <label value="Verificación de usuario" sclass="labelGrupoRegistrame" />  
+                                <separator bar="true"/>   
+                                <vbox>
+                                    <hbox>
+                                        <bw.captcha bgColor="16777215" id="cap1"  />
+                                        <button label="Regenerar" onClick="cap1.randomValue();" />                                    
+                                    </hbox>
+                                    <hbox style="border:1px">
+                                    Ingrese el texto que aparece en el gráfico:<textbox value="@bind(vm.captcha)" onChange="verifyCaptcha(self,cap1)" width="325px" />                                   
+                                    <textbox visible="false" value="@bind(vm.captcha)" id="captchaValido"/>
+                                    </hbox>
+                                </vbox>
+                            </vbox>
+                        </row>
+                        <row align="center">
+                            <hbox style="align:center">                               
+                                <button label="Registrar" onClick="@command('grabar')">
+                                </button><separator bar="true"/>
+                                <button label="Cancelar" onClick="cerrarVentana(ventanaRegistrame)">
+                                </button>
+                            </hbox>
+                        </row>
+		</rows>
+	</grid>
+</window>

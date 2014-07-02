@@ -1,0 +1,139 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.CapacitacionViewModel')"> 
+    <listbox  id="listboxcapacitacion" width="1200px" nonselectableTags="*" checkmark="true"  
+    model="@load(vm.listaCapacitacion)" onSelect="@command('updateMessage')">
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+        <auxhead>
+            <auxheader colspan="4">Capacitaciones</auxheader>
+        </auxhead>
+         <frozen columns="2" start="1"/>
+         <listhead sizable="true">
+                            <listheader image="/imagenes/book_delete.png"  width="35px" align="center"></listheader>
+                            <listheader label="Curso/Seminario" width="200px"  align="center"></listheader>
+                            <listheader label="Area referencia" width="200px" align="center"></listheader>
+                            <listheader label="Institución" width="200px" align="center"></listheader>
+                            <listheader label="Lugar" width="100px" align="center"></listheader>
+                            <listheader label="Año" width="70px" align="center"></listheader>
+                            <listheader label="Horas" width="70px" align="center"></listheader>                    
+                            <listheader label="Descripción" width="500px" align="center"></listheader>
+         </listhead>
+         <template name="model">   
+             <listitem>
+                 <listcell>
+                       
+                 </listcell>    
+                 <listcell >
+                      <textbox value="@bind(each.nbCursoRealizado)" width="98%"/>       
+                 </listcell>  
+                  <listcell >
+                       <combobox width="100%" model="@load(vm.listaAreaEstudio)"   
+                                         selectedItem="@bind(each.beCatalogo)" value="@bind(each.beCatalogo.nbCatalogo)" readonly="true">
+                                        <template name="model">
+                                           <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                        </template>
+                       </combobox>
+                 </listcell>  
+                  <listcell>
+                         <textbox value="@bind(each.nbInstitucion)" width="98%"/> 
+                 </listcell>  
+                  <listcell >
+                        <textbox value="@bind(each.nbLugar)" width="98%"/>  
+                 </listcell>    
+                 <listcell>
+                         <spinner value="@bind(each.nuAnioGrado)"
+                                                format="####" constraint="no empty,min 1900,max 2800" width="90%"/> 
+                 </listcell>           
+                 <listcell >
+                      <spinner value="@bind(each.nuHoras)"
+                                                format="####" constraint="no empty,min 2,max 20000" width="90%" /> 
+                 </listcell>
+                  <listcell >
+                         <textbox value="@bind(each.nbDescripcion)" width="100%" multiline="true" onChange='self.style="font-weight:bold"' style="padding-top:0px"/>                         
+                 </listcell>                                  
+             </listitem>
+         </template>        
+    </listbox>   
+         <grid>
+    <rows>
+        <row>
+            <cell align="center">
+                <hbox>
+                    <button label="Nuevo" onClick="@command('insertarRegistro')"></button> 
+                  <separator bar="true"/>             
+                <button label="Grabar capacitación" onClick="@command('grabar')"></button>
+                </hbox>
+                
+            </cell>              
+        </row>
+    </rows>
+</grid>        
+    
+</div>
+    <!--<grid width="130%" model="@load(vm.listaCapacitacion)" >
+                        <columns>
+                            <column width="70px"></column>
+                            <column label="Curso/Seminario" width="16%" align="center"></column>
+                            <column label="Area referencia" align="center"></column>
+                            <column label="Institución" align="center"></column>
+                            <column label="Lugar" align="center"></column>
+                            <column label="Año" width="8%" align="center"></column>
+                            <column label="Horas" width="7%" align="center"></column>                    
+                            <column label="Descripción" width="30%" align="center"></column>
+                        </columns>
+                        <template name="model">                    
+                            <row width="100%" >   
+                                <cell>
+                                    <combobox width="100%" 
+                                    selectedItem="@bind(each.esEstado)" value="@bind(each.esEstado)">
+                                        <comboitem value="Activo" label="Activo"/>
+                                        <comboitem value="Inactivo" label="Borrar"/>
+                                    </combobox>
+                                </cell>
+                                <cell>
+                                    <textbox value="@bind(each.nbCursoRealizado)" width="98%"/>                        
+                                </cell>                       
+                                <cell>
+                                     <combobox width="100%" model="@load(vm.listaAreaEstudio)"   
+                                         selectedItem="@bind(each.beCatalogo)" value="@bind(each.beCatalogo.nbCatalogo)" readonly="true">
+                                        <template name="model">
+                                           <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                        </template>
+                                </combobox>                          
+                                </cell>    
+                                 <cell>
+                                    <textbox value="@bind(each.nbInstitucion)" width="98%"/>                        
+                                </cell>  
+                                 <cell>
+                                    <textbox value="@bind(each.nbLugar)" width="98%"/>                        
+                                </cell>  
+                                 <cell> 
+                                       <spinner value="@bind(each.nuAnioGrado)"
+                                                format="####" constraint="no empty,min 1900,max 2800" width="90%"/> 
+                                </cell>   
+                                 <cell>
+                                     <spinner value="@bind(each.nuHoras)"
+                                                format="####" constraint="no empty,min 2,max 20000" width="90%" /> 
+                                                      
+                                </cell>    
+                                <cell width="300px">
+                                    <textbox value="@bind(each.nbDescripcion)" width="100%" multiline="true" onChange='self.style="font-weight:bold"' style="padding-top:0px"/>                        
+                                </cell>                      
+                            </row>
+                        </template>
+    </grid>
+    <grid>
+        <columns>
+            <column></column>
+            <column></column>
+              <column></column>
+        </columns>
+        <rows>
+            <row>              
+                    <button label="Nuevo"       onClick="@command('insertarRegistro')"></button>                  
+                    <button label="Grabar"      onClick="@command('grabar')"></button>
+            </row>
+        </rows>    
+        
+    </grid>
+</div>-->

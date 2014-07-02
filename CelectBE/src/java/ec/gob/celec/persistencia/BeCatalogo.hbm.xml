@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/06/2014 11:55:07 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeCatalogo" table="be_catalogo" catalog="cqbolsaempleo">
+        <id name="coCatalogo" type="java.lang.Integer">
+            <column name="CO_CATALOGO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogo" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="BE__CO_CATALOGO">
+                <comment>Representa el cdigo nico de la tabla</comment>
+            </column>
+        </many-to-one>
+        <property name="nbCatalogo" type="string">
+            <column name="NB_CATALOGO" length="300" not-null="true">
+                <comment>Nombre del Catlogo</comment>
+            </column>
+        </property>
+        <property name="esCatalogo" type="string">
+            <column name="ES_CATALOGO" length="20" not-null="true">
+                <comment>Representa el estado de la tabla para eliminacin logica los estados son Activo, Inactivo</comment>
+            </column>
+        </property>
+        <property name="nvCatalogo" type="short">
+            <column name="NV_CATALOGO" not-null="true" />
+        </property>
+        <set name="beIdiomasForCoNombreIdiioma" inverse="true" >
+            <key>
+                <column name="CO_NOMBRE_IDIIOMA" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeIdioma" />
+        </set>
+        <set name="beOfertaEmpleosForCoAreaEstudio" inverse="true">
+            <key>
+                <column name="CO_AREA_ESTUDIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beFormAcademicasForCoNivelEstudio" inverse="true">
+            <key>
+                <column name="CO_NIVEL_ESTUDIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeFormAcademica" />
+        </set>
+        <set name="bePersonasForCoTipoLicenciaPer" inverse="true">
+            <key>
+                <column name="CO_TIPO_LICENCIA_PER">
+                    <comment>TIPO DE LICENCIA DE CONDUCIR</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beIdiomasForCoEscribe" inverse="true">
+            <key>
+                <column name="CO_ESCRIBE" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeIdioma" />
+        </set>
+        <set name="bePersonasForCoTipoDiscapacidad" inverse="true">
+            <key>
+                <column name="CO_TIPO_DISCAPACIDAD">
+                    <comment>TIPO DE DISCAPACIDAD</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="bePersonasForCoProvinciaPer" inverse="true">
+            <key>
+                <column name="CO_PROVINCIA_PER" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beOfertaEmpleosForCoRelaLabOferemp" inverse="true">
+            <key>
+                <column name="CO_RELA_LAB_OFEREMP" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beIdiomasForCoHabla" inverse="true">
+            <key>
+                <column name="CO_HABLA" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeIdioma" />
+        </set>
+        <set name="beRefeEmpresas" inverse="true">
+            <key>
+                <column name="CO_TIPO_REFERENCI" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeRefeEmpresa" />
+        </set>
+        <set name="bePersonasForCoNivelEstudios" inverse="true">
+            <key>
+                <column name="CO_NIVEL_ESTUDIOS" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beOfertaEmpleosForCoInstruccionOferemp" inverse="true">
+            <key>
+                <column name="CO_INSTRUCCION_OFEREMP" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beIdiomasForCoEntiende" inverse="true">
+            <key>
+                <column name="CO_ENTIENDE" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeIdioma" />
+        </set>
+        <set name="beOfertaEmpleosForCoCategoriaOfertaOfe" inverse="true">
+            <key>
+                <column name="CO_CATEGORIA_OFERTA_OFE">
+                    <comment>CODIGO DE CATEGORIA DE OFERTA</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beCapacitacions" inverse="true">
+            <key>
+                <column name="CO_AREA_ESTUDIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCapacitacion" />
+        </set>
+        <set name="beOfertaEmpleosForCoDepartamentoOfe" inverse="true">
+            <key>
+                <column name="CO_DEPARTAMENTO_OFE">
+                    <comment>DEPARTAMENTO QUE REQUIERE EL PUESTO</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeOfertaEmpleo" />
+        </set>
+        <set name="beCatalogos" inverse="true" lazy="false" order-by="NB_CATALOGO">
+            <key>
+                <column name="BE__CO_CATALOGO">
+                    <comment>Representa el cdigo nico de la tabla</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCatalogo" />
+        </set>
+        <set name="bePersonasForCoEstadoCivilPer" inverse="true">
+            <key>
+                <column name="CO_ESTADO_CIVIL_PER" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beConocimientos" inverse="true">
+            <key>
+                <column name="CO_AREA_ESTUDIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeConocimiento" />
+        </set>
+        <set name="bePersonasForCoAreaEstudios" inverse="true">
+            <key>
+                <column name="CO_AREA_ESTUDIOS" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="bePersonasForCoPaisResidePer" inverse="true">
+            <key>
+                <column name="CO_PAIS_RESIDE_PER" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="bePersonasForCoGeneroPer" inverse="true">
+            <key>
+                <column name="CO_GENERO_PER" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="bePersonasForCoTipoIdentificacionPer" inverse="true">
+            <key>
+                <column name="CO_TIPO_IDENTIFICACION_PER" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="bePersonasForCoGrupoEtnicoPer" inverse="true">
+            <key>
+                <column name="CO_GRUPO_ETNICO_PER">
+                    <comment>GRUPO ETNICO AL QUE PERTENECE EL CANDIDATO</comment>
+                </column>
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePersona" />
+        </set>
+        <set name="beCalificacionEducacions" inverse="true">
+            <key>
+                <column name="co_Codigo_Nivel_Educaion" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeCalificacionEducacion" />
+        </set>
+        <set name="beFormAcademicasForCoAreEstudio" inverse="true">
+            <key>
+                <column name="CO_ARE_ESTUDIO" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeFormAcademica" />
+        </set>
+    </class>
+</hibernate-mapping>

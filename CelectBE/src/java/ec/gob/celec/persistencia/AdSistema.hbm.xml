@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdSistema" table="ad_sistema" catalog="cqbolsaempleo">
+        <id name="coSistema" type="java.lang.Integer">
+            <column name="CO_SISTEMA" />
+            <generator class="identity" />
+        </id>
+        <property name="nbSistema" type="string">
+            <column name="NB_SISTEMA" length="45" not-null="true" />
+        </property>
+        <property name="nbClave" type="string">
+            <column name="NB_CLAVE" length="100" not-null="true" />
+        </property>
+        <set name="adMenuSistemas" inverse="true">
+            <key>
+                <column name="CO_SISTEMA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.AdMenuSistema" />
+        </set>
+    </class>
+</hibernate-mapping>

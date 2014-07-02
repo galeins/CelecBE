@@ -1,0 +1,63 @@
+<div apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.ExperienciaLaboralViewModel')"> 
+    <listbox width="100%" model="@load(vm.listaExperiencia)"
+     nonselectableTags="*" checkmark="true" onSelect="@command('seleccionarBorrado')">
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+        <auxhead>
+            <auxheader colspan="4" >Experiencia Laboral</auxheader>
+        </auxhead> 
+        <!--<frozen columns="2"/>-->
+        <listhead sizable="true">
+            <listheader image="/imagenes/book_delete.png" width="35px" align="center"> </listheader>
+            <listheader label="Empresa" width="200px" align="center"></listheader>
+            <listheader label="Ciudad" width="80px" align="center"></listheader>
+            <listheader label="Cargo"  width="180px" align="center"></listheader>
+            <listheader label="Desde"  width="100px" align="center"></listheader>
+            <listheader label="Hasta"  width="100px" align="center"></listheader>
+            <listheader label="Num. Meses"   width="85px" align="center"></listheader>
+            <listheader label="Actividades realizadas"  width="480px" align="center"></listheader>                          
+        </listhead>
+        <template name="model">                    
+            <listitem width="100%" >  
+                <listcell>                     
+                </listcell> 
+                <listcell>
+                    <textbox value="@bind(each.nbEmpresa)" width="98%" inplace="true" constraint="no empty: Ingrese un nombre de empresa."/>                        
+                </listcell> 
+                 <listcell>
+                    <textbox value="@bind(each.nbCiudad)" width="98%" inplace="true" constraint="no empty: Ingrese la ciudad de la empresa"/>                        
+                </listcell>  
+                 <listcell>
+                    <textbox value="@bind(each.nbCargoExpLaboral)" width="98%" inplace="true" constraint="no empty: Ingrese el cargo que ocupó en la empresa."/>                        
+                </listcell>  
+                <listcell>
+                    <datebox  format="MM-yyyy" width="96%" value="@bind(each.feIngresoExpLaboral)" inplace="true" constraint="no empty: Ingrese el mes y el año que inició sus labores."/> 
+                </listcell>
+                <listcell>
+                    <datebox  format="MM-yyyy" width="96%" value="@bind(each.feSalidaExpLaboral)" inplace="true" constraint="no empty: Ingrese el mes y el año que terminó sus labores."/>
+                </listcell>
+                 <listcell>
+                      <spinner  value="@bind(each.nuTiempoMeses)"
+                                format="###" constraint="no empty,min 0,max 1000" width="95%" inplace="true"/>                                    
+                </listcell>   
+                 <listcell>
+                    <textbox value="@bind(each.nbExpLaboral)" width="96%" multiline="true" inplace="true" constraint="no empty:Detalle las actividades realizadas en la empresa."/>                        
+                </listcell>                                    
+            </listitem>
+        </template>
+  </listbox>
+  <grid>
+    <rows>
+        <row>
+            <cell align="center">
+                <hbox>
+                    <button label="Nuevo" onClick="@command('insertarRegistro')"></button> 
+                  <separator bar="true"/>             
+                <button label="Grabar formación" onClick="@command('grabar')"></button>
+                </hbox>
+                
+            </cell>              
+        </row>
+    </rows>
+  </grid>           
+</div>

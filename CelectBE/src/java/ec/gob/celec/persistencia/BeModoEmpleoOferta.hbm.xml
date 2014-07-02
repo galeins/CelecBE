@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeModoEmpleoOferta" table="be_modo_empleo_oferta" catalog="cqbolsaempleo">
+        <id name="coModoEmpleoOferta" type="java.lang.Integer">
+            <column name="CO_MODO_EMPLEO_OFERTA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beOfertaEmpleo" class="ec.gob.celec.persistencia.BeOfertaEmpleo" fetch="select">
+            <column name="CO_OFERTA_EMPLEO" not-null="true" />
+        </many-to-one>
+        <property name="coModoEmplOferta" type="string">
+            <column name="CO_MODO_EMPL_OFERTA" length="50" />
+        </property>
+        <property name="deEspecifique" type="string">
+            <column name="DE_ESPECIFIQUE" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

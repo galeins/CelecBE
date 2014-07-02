@@ -1,0 +1,49 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/celec/asesor/templateCelecAsesor.zul"?>
+<div apply="org.zkoss.bind.BindComposer" self="@define(contentAsesor)"
+viewModel="@id('vm') @init('ec.gob.celec.controlador.asesor.listadoProcesosViewModel')"> 
+
+    
+
+<listbox width="100%" model="@load(vm.listadoProcesosSeleccion)"
+     nonselectableTags="*"  mold="paging" pageSize="9" >
+    <auxhead>
+            <auxheader colspan="4" style="font-size:26px;font-weight:bold;padding-left:20px" label="Procesos de Selección">  
+              <separator bar="true"/> <button label="Nuevo" onClick="@command('insertarRegistro')"/>
+             
+            </auxheader>        
+    </auxhead> 
+    <listhead sizable="true">
+            <listheader label="Código"  align="center"></listheader>
+            <listheader label="Denominación del cargo"  align="center" width="40%"></listheader>
+            <listheader label="Estado del proceo"  align="center"></listheader>
+            <listheader label="Acciones"  align="center"></listheader>                            
+            <listheader label="Desactivar"  align="center"></listheader>                            
+    </listhead>
+    <template name="model">  
+        <listitem width="100%" > 
+             <listcell>
+                 <a onClick="@command('desplegarProceso',codigoOferta=each.coOfertaEmpleo)" id="@bind(each.coCodigoOfertaOfe)">
+                     <label value="@bind(each.coCodigoOfertaOfe)" id=""/>   
+                 </a>
+             </listcell>   
+             <listcell>
+                 <label value="@bind(each.nbOfertaEmpleo)" id=""/>
+             </listcell>
+              <listcell>
+                 <label value="@bind(each.esOfertaEmpleo)" id=""/>
+             </listcell>
+             <listcell>
+               <button image="/imagenes/applications.png"  onClick="@command('copiarProceso',codigoOferta=each.coOfertaEmpleo)"  />
+               <button image="/imagenes/application_process.png"  onClick="@command('parametrizarProceso',codigoOferta=each.coOfertaEmpleo)"/>
+               <button image="/imagenes/business_users.png"  onClick=""/>                
+             </listcell>
+             <listcell>
+                 <button image="/imagenes/application_delete.png"  onClick=""  width="30%" />
+             </listcell>
+        </listitem>
+    </template>
+    
+</listbox>
+</div>

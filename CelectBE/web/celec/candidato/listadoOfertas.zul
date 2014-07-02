@@ -1,0 +1,18 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<window>
+    <vbox>            
+        <grid id="gridOfertas" model="@load(vm.datosOfertaEmpleo)" mold="paging" pageSize="5">
+                <auxhead>
+                    <auxheader colspan="2" class="topic">Ofertas de Empleo</auxheader>
+                </auxhead>
+		<columns>
+			<column label=""/>			
+		</columns>
+                <template name="model1">
+                    <row>
+                         <label value="@bind(each.nbOfertaEmpleo)" /> 
+                    </row>
+                </template>		
+	</grid>
+    </vbox>
+</window>

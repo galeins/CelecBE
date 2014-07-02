@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeAgencia" table="be_agencia" catalog="cqbolsaempleo">
+        <id name="coAgencia" type="java.lang.Integer">
+            <column name="CO_AGENCIA" />
+            <generator class="identity" />
+        </id>
+        <property name="nbAgencia" type="string">
+            <column name="NB_AGENCIA" length="50" />
+        </property>
+        <set name="beColocacions" inverse="true">
+            <key>
+                <column name="CO_AGENCIA" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BeColocacion" />
+        </set>
+    </class>
+</hibernate-mapping>

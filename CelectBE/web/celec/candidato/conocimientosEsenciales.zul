@@ -1,0 +1,54 @@
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.ConocimientosEsencialesViewModel')"> 
+    <grid width="95%" model="@load(vm.listaConocimientosEsenciales)">
+                        <columns>
+                            <column label="Estado" width="8%"></column>
+                            <column label="Area de conocimiento" width="30%" align="center"></column>
+                            <column label="Descripción" width="60%" align="center"></column>                            
+                        </columns>
+                        <template name="model">                    
+                            <row width="100%" >
+                                <cell>
+                                     <combobox width="100%" 
+                                    selectedItem="@bind(each.esEstado)" value="@bind(each.esEstado)">
+                                        <comboitem value="Activo" label="Activo"/>
+                                        <comboitem value="Inactivo" label="Borrar"/>
+                                    </combobox>
+                                </cell>                                                 
+                                <cell>
+                                   <combobox width="100%" model="@load(vm.listaAreaEstudio)"   
+                                         selectedItem="@bind(each.beCatalogo)" value="@bind(each.beCatalogo.nbCatalogo)" readonly="true">
+		     		  <template name="model">
+                                                        <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                   </template>
+                                </combobox>                                   
+                                </cell>    
+                                 <cell>
+                                    <textbox value="@bind(each.nbDescripcion)" width="98%"/>                        
+                                </cell>                                                
+                            </row>
+                        </template>
+    </grid>
+    <grid>
+        <columns>
+            <column></column>
+            <column></column>
+            <column></column>
+        </columns>
+        <rows>
+            <row>     
+                <cell></cell>      
+                <cell>   
+                    <hbox>
+                             <button label="Nuevo"       onClick="@command('insertarRegistro')"></button>                  
+                    <separator bar="true"/>
+                    <button label="Grabar"      onClick="@command('grabar')"></button>                    
+                </hbox>
+                    
+                </cell>
+            </row>
+        </rows>    
+        
+    </grid>
+</div>

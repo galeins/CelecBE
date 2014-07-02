@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeRefePersonal" table="be_refe_personal" catalog="cqbolsaempleo">
+        <id name="coRefePersonal" type="java.lang.Integer">
+            <column name="CO_REFE_PERSONAL" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCurriculo" class="ec.gob.celec.persistencia.BeCurriculo" fetch="select" lazy="false">
+            <column name="CO_CURRICULO" not-null="true" />
+        </many-to-one>
+        <property name="nbRefePersonal" type="string">
+            <column name="NB_REFE_PERSONAL" length="40" />
+        </property>
+        <property name="nbCargoRefePersonal" type="string">
+            <column name="NB_CARGO_REFE_PERSONAL" length="40" />
+        </property>
+        <property name="nuTelefonoRefePersonal" type="string">
+            <column name="NU_TELEFONO_REFE_PERSONAL" length="25" />
+        </property>
+        <property name="esEstado" type="string">
+            <column name="ES_ESTADO" length="45" />
+        </property>
+        <property name="vaTipoRelacion" type="string">
+            <column name="VA_TIPO_RELACION" length="45" />
+        </property>
+        <property name="vaDireccion" type="string">
+            <column name="VA_DIRECCION" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

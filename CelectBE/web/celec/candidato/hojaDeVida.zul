@@ -1,0 +1,316 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="ec.gob.celec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/celec/general/templateCelec.zul"?>
+<hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.celec.controlador.candidato.HojaDeVidaViewModel')">
+    <tabbox id="tboxPrincipal" width="100%" tabscroll="false" >
+        <tabs >
+            <tab label="Datos Personales" sclass="menutabs"/>
+            <tab label="Formación Académica" sclass="menutabs"/>
+            <tab label="Capacitaciones" sclass="menutabs"/>           
+            <tab label="Experiencia Laboral" sclass="menutabs"/>									
+            <tab label="Idiomas" sclass="menutabs"/>
+            <tab label="Referencias" sclass="menutabs"/>           
+	</tabs>
+	<tabpanels >
+            <tabpanel id="tabpanelHojaVida" height="100%" width="1000px"  >
+                <hbox>
+                  <grid width="100%"  hflex="1" >
+                            <columns>                               
+                                    <column label="" width="20%" align="right"/>
+                                    <column label="" width="23%"/>
+                                    <column label="" width="20%" align="right"/>
+                                    <column label="" width="27%" />
+                                    <column label="" width="10%" /> 
+                                      <column label="" width="10%" />                                  
+                            </columns>
+                            <rows >
+                                    <row>
+                                      <cell colspan="1">
+                                       Nombres completos: 
+                                      </cell>
+                                      <cell colspan="1">
+                                          <textbox id="textNombreCompleto" value="@bind(vm.bePersona.nbPersona)" sclass="textBoxMedio" constraint="no empty: Ingrese sus nombres."/>
+                                      </cell>
+                                      <cell colspan="1">
+                                       Apellidos completos: 
+                                      </cell>
+                                      <cell colspan="1">
+                                          <textbox id="textApellidosCompletos" value="@bind(vm.bePersona.apPersona)" sclass="textBoxMedio" constraint="no empty: Ingrese sus apellidos."/>
+                                      </cell>  
+                                      <cell colspan="2" rowspan="8">
+                                          <image id="" content="@bind(vm.foto)" width="100%"  height="100%"/>
+                                      </cell>
+                                    </row>
+                                    <row>	
+                                                              
+                                    </row>
+                                    <row>	
+                                      <cell colspan="1">
+                                       Número de documento: 
+                                      </cell>
+                                      <cell colspan="1">
+                                          <textbox id="textNumeroDocumento" value="@bind(vm.bePersona.nuIdentificaciobPer)" sclass="textBoxMedio" width="98%" constraint="no empty: Ingrese su número de documento."/>
+                                      </cell>  
+                                      <cell colspan="1">
+                                       Tipo de documento: 
+                                      </cell>
+                                      <cell colspan="1">
+                                           <combobox id="comboboxTipoDocumento" width="100%" model="@load(vm.listaTiposIdentificacion)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoTipoIdentificacionPer)" value="@load(vm.bePersona.beCatalogoByCoTipoIdentificacionPer.nbCatalogo)" constraint="no empty: Seleccione un tipo de documento." readonly="true">
+                                                    <template name="model">
+                                                        <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                                    </template>
+                                           </combobox> 
+                                      </cell>                            
+                                    </row>
+                                     <row>	
+                                      <cell colspan="1">
+                                       Fecha de nacimiento:  
+                                      </cell>
+                                      <cell colspan="1">
+                                         <datebox compact="true" buttonVisible="true" lenient="true" mold="rounded" format="dd/MM/yyyy" id="dateboxNacimiento" width="100px" value="@bind(vm.bePersona.feNacimientoPer)" onChange="@command('calcularEdad')" constraint="no empty: Ingrese su fecha de nacimiento."/>
+                                         Edad: <label value="@bind(vm.edad)" id=""/>
+                                      </cell> 
+                                      <cell colspan="1">
+                                       Nivel académico:
+                                      </cell>
+                                      <cell colspan="1">
+                                            <combobox id="comboboxNivelAcademico" width="100%" model="@load(vm.listaNivelAcademico)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoNivelEstudios)" value="@load(vm.bePersona.beCatalogoByCoNivelEstudios.nbCatalogo)" readonly="true">
+                                                <template name="model">
+                                                       <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                                </template>
+                                               </combobox>
+                                      </cell>                          
+                                    </row>
+                                    <row>
+                                      <cell colspan="1">
+                                       Género:  
+                                      </cell>
+                                      <cell colspan="1">
+                                        <combobox id="comboboxGenero" width="100%" model="@load(vm.listaGenero)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoGeneroPer)" value="@load(vm.bePersona.beCatalogoByCoGeneroPer.nbCatalogo)" readonly="true">
+                                                    <template name="model">
+                                                        <comboitem value= "@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)" />
+                                                    </template>
+                                           </combobox> 
+                                      </cell> 
+                                      <cell colspan="1">
+                                       Estado civil:  
+                                      </cell>
+                                      <cell colspan="1">
+                                         <combobox  id="comboboxEstadoCivil" width="100%" model="@load(vm.listaEstadoCivil)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoEstadoCivilPer)" value="@load(vm.bePersona.beCatalogoByCoEstadoCivilPer.nbCatalogo)" readonly="true">
+                                             <template name="model">
+                                                <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                             </template>
+                                         </combobox>
+                                      </cell> 
+                                    </row>
+                                     <row>
+                                      <cell colspan="1">
+                                       ¿Es extranjero?:  
+                                      </cell>
+                                      <cell colspan="1">
+                                         <radiogroup Id="radioGroupExtranjero"  selectedItem="@bind(vm.bePersona.vaExtranjeroPer)" >
+                                                    <radio label="SI" value="SI"/>
+                                                    <radio label="NO" value="NO"/>
+                                            </radiogroup>
+                                      </cell> 
+                                      <cell colspan="1">
+                                       Nacionalidad:  
+                                      </cell>
+                                      <cell colspan="1">
+                                         <textbox id="textNacionalidad" value="@bind(vm.bePersona.deNacionalidadPer)" sclass="textBoxMedio" />
+                                      </cell> 
+                                    </row>
+                                    <row>
+                                      <cell colspan="1">
+                                       Ciudad de origen:  
+                                      </cell>
+                                      <cell colspan="1">
+                                          <textbox id="textCiudadOrigen" value="@bind(vm.bePersona.nbCiudadResidePer)" sclass="textBoxMedio" />
+                                      </cell> 
+                                      <cell colspan="1">
+                                       País de residencia:  
+                                      </cell>
+                                      <cell colspan="1">
+                                        <combobox id="comboboxPaisResidencia" width="100%" model="@load(vm.listaPaises)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoPaisResidePer)" value="@load(vm.bePersona.beCatalogoByCoPaisResidePer.nbCatalogo)" readonly="true"
+                                        constraint="no empty: Seleccione un pais de residencia">
+                                            <template name="model">
+                                                <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                            </template>
+                                            
+                                         </combobox>
+                                      </cell> 
+                                    </row>
+                                    <row>
+                                      <cell colspan="1">
+                                       Domicilio:  
+                                      </cell>  
+                                      <cell colspan="3">
+                                          <textbox id="textDomicilio" value="@bind(vm.bePersona.deDomicilioPer)" sclass="textBoxRegistrarme" />
+                                      </cell>
+                                    </row>                
+                                    <row>
+                                        <cell>
+                                            Provincia:
+                                        </cell>
+                                        <cell>
+                                            <combobox id="comboboxProvincia" width="100%" model="@load(vm.listaLugarResidencia)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoProvinciaPer)" value="@load(vm.bePersona.beCatalogoByCoProvinciaPer.nbCatalogo)" readonly="true">
+                                                <template name="model">
+                                            <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                                </template>
+                                         </combobox>
+                                        </cell>
+                                        <cell>
+                                            Cantón:
+                                        </cell>
+                                        <cell>
+                                            <textbox id="textCanton" value="@bind(vm.bePersona.deCantonPer)" sclass="textBoxMedio"/>
+                                        </cell>
+                                    </row>
+                                    <row>
+                                        <cell>
+                                            Teléfono convencional:
+                                        </cell>
+                                        <cell>
+                                           <intbox id="textTelefonoConvencional" value="@bind(vm.bePersona.nuTelefonoPer)" sclass="textBoxMedio" onFocus="@command('mensaje')" constraint="no empty: Ingrese un número de teléfono convencional"/>
+                                        </cell>
+                                        <cell>
+                                            Teléfono celular:
+                                        </cell>
+                                        <cell>
+                                            <intbox value="@bind(vm.bePersona.nuCelularFono)" sclass="textBoxMedio" constraint="no empty: Ingrese un número de teléfono celular"/>
+                                        </cell>
+                                    </row>
+                                    <row>                                         
+                                        <cell colspan="1">
+                                            Grupo étnico al que pertence:
+                                        </cell>
+                                        <cell colspan="1">
+                                              <combobox id="comboboxGrupoEtnico" width="100%" model="@load(vm.listaGrupoEtnico)" constraint="no empty: Seleccione un grupo étnico."
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoGrupoEtnicoPer)" value="@load(vm.bePersona.beCatalogoByCoGrupoEtnicoPer.nbCatalogo)" readonly="true">
+                                                <template name="model">
+                                                       <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                                </template>
+                                         </combobox>
+                                        </cell>           
+                                        <cell>
+                                            Estado de la hoja de vida:
+                                        </cell>                 
+                                        <cell>
+                                            <label value="@bind(vm.bePersona.esPersona)" style="color:red"/>
+                                        </cell>
+                                    </row>                                   
+                                    <row>
+                                        <cell colspan="1">
+                                            Correo electrónico:
+                                        </cell>
+                                        <cell colspan="1">
+                                           <textbox id="textCorreoElectronico" value="@bind(vm.bePersona.deEmailPer)" sclass="textBoxRegistrarme" constraint="/.+@.+\.[a-z]+/: El correo electrónico no es válido"/>
+                                        </cell>  
+                                        <cell>
+                                            ¿Tiene disponibilidad para viajar?
+                                        </cell>                         
+                                        <cell>
+                                             <radiogroup Id="DisponibilidadViaje" selectedItem="@bind(vm.bePersona.vaDisponibilidadParaViajarPer)">
+                                                    <radio label="SI" value="SI"/>
+                                                    <radio label="NO" value="NO"/>
+                                            </radiogroup>
+                                        </cell>
+                                    </row>
+                                    <row>
+                                        <cell>
+                                            ¿Tiene licencia de conducir?
+                                        </cell>
+                                        <cell>
+                                            <radiogroup Id="tieneLicencia" selectedItem="@bind(vm.bePersona.vaPoseeLincenciaPer)">
+                                                    <radio label="SI" value="SI"/>
+                                                    <radio label="NO" value="NO"/>
+                                            </radiogroup>
+                                        </cell>
+                                        <cell>
+                                            Tipo de licencia
+                                        </cell>
+                                        <cell>
+                                           <combobox width="100%" model="@load(vm.listaTipoLicencia)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoTipoLicenciaPer)" value="@load(vm.bePersona.beCatalogoByCoTipoLicenciaPer.nbCatalogo)" readonly="true">
+                                                <template name="model">
+                                                       <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                                </template>
+                                         </combobox>
+                                        </cell>
+                                    </row>
+                                    <row>
+                                        <cell>
+                                            ¿Posee alguna discapacidad?
+                                        </cell>
+                                        <cell>
+                                            <radiogroup Id="poseeDiscapacidad" selectedItem="@bind(vm.bePersona.vaDiscapacidadPer)">
+                                                    <radio label="SI" value="SI"/>
+                                                    <radio label="NO" value="NO"/>
+                                            </radiogroup>
+                                        </cell>
+                                        <cell>
+                                            Tipo de discapacidad
+                                        </cell>
+                                        <cell>
+                                             <combobox width="100%" model="@load(vm.listaTipoIncapacidad)" 
+                                                selectedItem="@bind(vm.bePersona.beCatalogoByCoTipoDiscapacidad)" value="@load(vm.bePersona.beCatalogoByCoTipoDiscapacidad.nbCatalogo)" readonly="true">
+                                                <template name="model">
+                                                       <comboitem value="@bind(each.coCatalogo)" label="@bind(each.nbCatalogo)"/>
+                                                </template>
+                                            </combobox>
+                                        </cell>
+                                    </row>
+                                    <row>
+                                        <cell>
+                                            Número de carnet de discapacidad:
+                                        </cell>
+                                        <cell>
+                                            <textbox value="@bind(vm.bePersona.nuCarnetConadisPer)" sclass="textBoxMedio"/>
+                                        </cell>
+                                        <cell>
+                                            Porcentaje de discapacidad:
+                                        </cell>
+                                        <cell>
+                                             <spinner id="porcentajeSpinner" value="@bind(vm.bePersona.nuPorcentajeDiscapacidadPer)"
+                                                format="##" constraint="no empty,min 0,max 100" />
+                                         </cell>
+                                    </row>
+                                     <row>
+                                        <cell colspan="4" align="center">
+                                            <button label="Grabar datos personales" onClick="@command('grabar')"/>                                        
+                                            <button label="Subir fotografía" onClick="@command('subirArchivo')"/>
+                                            <button label="Ver pdf" onClick="@command('abrirPdf')"/>
+                                        </cell>
+                                        
+                                    </row>
+                            </rows>
+                    </grid>   
+                    <!--<image content="@bind(vm.foto)" /> -->
+                </hbox>                
+                </tabpanel>
+                <tabpanel height="100%" hflex="min">
+                     <include src="/celec/candidato/formacionAcademica.zul"/>  
+                </tabpanel>
+                 <tabpanel height="100%" width="100%"  >
+                     <include src="/celec/candidato/capacitacionCandidato.zul"/> 
+                 </tabpanel>                
+                <tabpanel height="100%" width="100%" hflex="min">
+                     <include src="/celec/candidato/experienciaLaboral.zul"/>
+                </tabpanel>
+                <tabpanel height="100%" width="100%" >
+                    <include src="/celec/candidato/idiomas.zul"/>
+                </tabpanel>
+                <tabpanel height="100%" width="100%" hflex="min">
+                     <include src="/celec/candidato/referenciasPersonales.zul"/>
+                </tabpanel>
+                
+        </tabpanels>
+    </tabbox>                                                                        
+</hbox>

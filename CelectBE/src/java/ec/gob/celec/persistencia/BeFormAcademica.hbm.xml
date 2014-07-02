@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeFormAcademica" table="be_form_academica" catalog="cqbolsaempleo">
+        <id name="coFormaAcademica" type="java.lang.Integer">
+            <column name="CO_FORMA_ACADEMICA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beCatalogoByCoNivelEstudio" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_NIVEL_ESTUDIO" />
+        </many-to-one>
+        <many-to-one name="beCatalogoByCoAreEstudio" class="ec.gob.celec.persistencia.BeCatalogo" fetch="select" lazy="false">
+            <column name="CO_ARE_ESTUDIO" />
+        </many-to-one>
+        <many-to-one name="beCurriculo" class="ec.gob.celec.persistencia.BeCurriculo" fetch="select">
+            <column name="CO_CURRICULO" not-null="true" />
+        </many-to-one>
+        <property name="nbInstitucion" type="string">
+            <column name="NB_INSTITUCION" length="60" />
+        </property>
+        <property name="nbEstudioRealizado" type="string">
+            <column name="NB_ESTUDIO_REALIZADO" length="1000" />
+        </property>
+        <property name="feInicioFormacade" type="date">
+            <column name="FE_INICIO_FORMACADE" length="10" />
+        </property>
+        <property name="feFinFormacade" type="date">
+            <column name="FE_FIN_FORMACADE" length="10" />
+        </property>
+        <property name="nbPais" type="string">
+            <column name="NB_PAIS" length="30" />
+        </property>
+        <property name="nuHoras" type="java.lang.Integer">
+            <column name="NU_HORAS" />
+        </property>
+        <property name="esFormacionAbt" type="string">
+            <column name="ES_FORMACION_ABT" length="5" />
+        </property>
+        <property name="nuAnioGrado" type="java.lang.Integer">
+            <column name="NU_ANIO_GRADO" />
+        </property>
+        <property name="nuNumeroSenescyt" type="java.lang.Integer">
+            <column name="NU_NUMERO_SENESCYT" />
+        </property>
+        <property name="esEstado" type="string">
+            <column name="ES_ESTADO" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

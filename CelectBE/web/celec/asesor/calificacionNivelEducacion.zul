@@ -1,0 +1,31 @@
+<div apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('ec.gob.celec.controlador.asesor.CalificacionNivelViewModel')">
+<grid >
+        <columns>
+            <column></column>
+            <column></column>
+        </columns>
+        <rows>
+            <row>
+                Título de cuarto nivel:
+                <spinner format="##" constraint="no empty,min 0,max 100" />
+            </row>
+            <row>
+                Título de tercer nivel:
+                <spinner format="##" constraint="no empty,min 0,max 100" />
+            </row>
+            <row>
+                Tecnología:
+                <spinner format="##" constraint="no empty,min 0,max 100" />
+            </row>
+            <row>
+                Egresado de la universidad:
+                <spinner format="##" constraint="no empty,min 0,max 100" />
+            </row>
+        </rows>
+    </grid>
+    <hbox>
+        <button label="Grabar" onClick="">
+     </button>
+    </hbox>
+</div>

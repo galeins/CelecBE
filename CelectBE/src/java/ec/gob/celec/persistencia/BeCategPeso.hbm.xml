@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.BeCategPeso" table="be_categ_peso" catalog="cqbolsaempleo">
+        <id name="coCategPeso" type="java.lang.Short">
+            <column name="CO_CATEG_PESO" />
+            <generator class="identity" />
+        </id>
+        <property name="nbCategPeso" type="string">
+            <column name="NB_CATEG_PESO" length="25" not-null="true" />
+        </property>
+        <property name="vaTipoCalificacion" type="string">
+            <column name="VA_TIPO_CALIFICACION" length="100" />
+        </property>
+        <set name="bePesoOfertas" inverse="true">
+            <key>
+                <column name="CO_CATEG_PESO" not-null="true" />
+            </key>
+            <one-to-many class="ec.gob.celec.persistencia.BePesoOferta" />
+        </set>
+    </class>
+</hibernate-mapping>

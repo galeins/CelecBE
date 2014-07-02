@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/06/2014 12:52:52 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.gob.celec.persistencia.AdCabeceraEmpresa" table="ad_cabecera_empresa" catalog="cqbolsaempleo">
+        <id name="coCabeceraEmpresa" type="java.lang.Integer">
+            <column name="CO_CABECERA_EMPRESA" />
+            <generator class="identity" />
+        </id>
+        <property name="nbCabeceraEmpresa" type="string">
+            <column name="NB_CABECERA_EMPRESA" length="45" />
+        </property>
+        <property name="nbTituloCabecera" type="string">
+            <column name="NB_TITULO_CABECERA" length="100" />
+        </property>
+        <property name="esActivo" type="string">
+            <column name="ES_ACTIVO" length="4" />
+        </property>
+    </class>
+</hibernate-mapping>
